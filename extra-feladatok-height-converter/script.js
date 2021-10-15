@@ -30,16 +30,28 @@ function swapConversion() {
 
 function calculation() {
 	if (state === "Imperial") {
-		let cm =
-			parseFloat(document.querySelector(".feetOrMeters").value) * 30.48 +
-			parseFloat(document.querySelector(".inchesOrCentimeters").value) * 2.54;
+		let upperValue = document.querySelector(".feetOrMeters").value;
+		let lowerValue = document.querySelector(".inchesOrCentimeters").value;
+		if (upperValue == "") {
+			upperValue = 0;
+		}
+		if (lowerValue == "") {
+			lowerValue = 0;
+		}
+		let cm = parseFloat(upperValue) * 30.48 + parseFloat(lowerValue) * 2.54;
 		document.querySelector(".solutionBox").innerHTML = cm.toFixed(2) + " cm";
 		checkIfMore();
 	} else if (state === "Metric") {
+		let upperValue = document.querySelector(".feetOrMeters").value;
+		let lowerValue = document.querySelector(".inchesOrCentimeters").value;
+		if (upperValue == "") {
+			upperValue = 0;
+		}
+		if (lowerValue == "") {
+			lowerValue = 0;
+		}
 		let feet =
-			parseFloat(document.querySelector(".feetOrMeters").value) * 3.2808399 +
-			parseFloat(document.querySelector(".inchesOrCentimeters").value) *
-				0.032808399;
+			parseFloat(upperValue) * 3.2808399 + parseFloat(lowerValue) * 0.032808399;
 		document.querySelector(".solutionBox").innerHTML =
 			feet.toFixed(2) + " feet";
 		checkIfMoar();
@@ -48,9 +60,7 @@ function calculation() {
 
 function checkIfMore() {
 	let solution = parseFloat(document.querySelector(".solutionBox").innerHTML);
-	if (Number.isNaN(solution)) {
-		document.querySelector(".solutionBox").innerHTML = "0 cm";
-	} else if (solution >= 200) {
+	if (solution >= 200) {
 		let meters = Math.floor(solution / 100);
 		cm = solution % 100;
 		document.querySelector(".solutionBox").innerHTML =
@@ -60,9 +70,7 @@ function checkIfMore() {
 
 function checkIfMoar() {
 	let solution = parseFloat(document.querySelector(".solutionBox").innerHTML);
-	if (Number.isNaN(solution)) {
-		document.querySelector(".solutionBox").innerHTML = "0 feet";
-	} else if (solution % 1 !== 0) {
+	if (solution % 1 !== 0) {
 		document.querySelector(".solutionBox").innerHTML =
 			Math.floor(solution) +
 			" feet, " +
