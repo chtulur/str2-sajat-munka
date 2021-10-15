@@ -1,0 +1,119 @@
+body {
+	display: flex;
+	justify-content: center;
+	margin-top: 100px;
+}
+.playArea {
+	position: absolute;
+	display: flex;
+	width: 420px;
+	height: 420px;
+	border: solid 5px rgba(46, 49, 230, 0.74);
+	background-color: rgba(255, 237, 209, 0.876);
+	border-radius: 10px;
+	flex-wrap: wrap;
+	justify-content: center;
+	align-items: center;
+}
+.redBalloon {
+	background-color: rgb(1, 158, 1);
+	width: 80px;
+	height: 80px;
+	border-radius: 50%;
+	margin: 1px;
+}
+.blueBalloon {
+	background-color: blue;
+	width: 80px;
+	height: 80px;
+	border-radius: 50%;
+	margin: 1px;
+}
+
+.purpleBalloon {
+	background-color: purple;
+	width: 80px;
+	height: 80px;
+	border-radius: 50%;
+	margin: 1px;
+}
+
+.goldenBalloon {
+	background-color: gold;
+	width: 80px;
+	height: 80px;
+	border-radius: 50%;
+	margin: 1px;
+}
+
+.crimsonBalloon {
+	background-color: crimson;
+	width: 80px;
+	height: 80px;
+	border-radius: 50%;
+	margin: 1px;
+}
+
+.clicked {
+	background-color: transparent;
+	width: 80px;
+	height: 80px;
+	margin: 1px;
+	transition-duration: 0.15s;
+}
+.btn {
+	position: relative;
+	top: 450px;
+	left: 69px;
+	display: block;
+	width: 250px;
+	height: 60px;
+	background-color: rgb(74, 46, 230);
+	font-size: 25px;
+	border: transparent;
+	border-radius: 10px;
+	color: rgb(255, 255, 255);
+}
+.btn:active {
+	position: relative;
+	top: 450px;
+	left: 69px;
+	bottom: 340px;
+	display: block;
+	width: 250px;
+	height: 60px;
+	background-color: rgb(43, 27, 136);
+	font-size: 25px;
+	border: transparent;
+	border-radius: 10px;
+	transform: scale(0.97);
+	color: rgb(255, 255, 255);
+}
+.btnI {
+	position: relative;
+	top: 530px;
+	right: 133px;
+	bottom: 280px;
+	display: block;
+	width: 150px;
+	height: 40px;
+	background-color: rgb(48, 197, 11);
+	font-size: 20px;
+	border: transparent;
+	border-radius: 10px;
+	color: rgb(255, 255, 255);
+}
+.btnI:active {
+	position: relative;
+	top: 530px;
+	right: 133px;
+	display: block;
+	width: 150px;
+	height: 40px;
+	background-color: rgb(30, 121, 7);
+	font-size: 20px;
+	border: transparent;
+	border-radius: 10px;
+	transform: scale(0.97);
+	color: rgb(255, 255, 255);
+}
