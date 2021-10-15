@@ -13,7 +13,6 @@ function domForField() {
 		const square = document.createElement("div");
 		grid.appendChild(square);
 		balloonsForPlayArea.push(square);
-		console.log(balloonsForPlayArea);
 	}
 }
 
