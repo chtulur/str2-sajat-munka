@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./style.css" />
+    <script src="./script.js"></script>
+    <title>About</title>
+  </head>
+  <body>
+    <header>
+      <h1>About</h1>
+    </header>
+    <nav>
+      <ul>
+        <li><a href="./index.html">Home</a></li>
+        <li><a href="./works.html">Achievements</a></li>
+        <li><a href="./gallery.html">Gallery</a></li>
+        <li><a href="./about.html">About</a></li>
+      </ul>
+    </nav>
+    <main>
+      <img class="aboutPic" src="./assets/onthedyke.jpg" alt="" />
+      <h2>About me</h2>
+      <p>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Dignissimos
+        iusto quo officia sapiente ea magnam quos ratione sint placeat nesciunt
+        provident recusandae, quis hic veritatis quidem corporis vel rerum
+        magni. Mollitia, ut hic, eum non nobis doloribus dolorem quod animi enim
+        illum, saepe earum dicta quibusdam eligendi accusamus soluta labore
+        ullam. Facilis nisi nulla consectetur excepturi nihil aliquam aperiam
+        non architecto magni? Quos, corporis dicta eius, vel, quis corrupti
+        ullam porro odio ipsam cupiditate quibusdam libero rerum pariatur saepe.
+      </p>
+      <section>
+        <h2>Races<sub class="subForAbout">(in chronological order)</sub></h2>
+        <ol>
+          <li>Half-marathon, 1:42</li>
+          <li>Marathon, 4:24</li>
+          <li>Iron Man, 14:56</li>
+          <li>Marathon, 3:16</li>
+          <li>Ultra Balaton, 40km, 3:02</li>
+          <li>Half-marathon, 1:36</li>
+        </ol>
+        <h2>My Strengths</h2>
+        <ul>
+          <li>Persistent</li>
+          <li>Physically fit</li>
+          <li>Effective as lone wolf</li>
+          <li>Quick to understand concepts</li>
+          <li>Extremely curious</li>
+          <li>Decent cold resistance</li>
+          <li>Somewhat creative</li>
+          <li>Highly analytical</li>
+        </ul>
+        <h2>Hobbies <sub class="subForAbout">(in no particular order)</sub></h2>
+        <ul>
+          <li>Gaming</li>
+          <li>Drawing</li>
+          <li>Running</li>
+          <li>Cycling</li>
+          <li>Game Development</li>
+        </ul>
+
+        <h2>Languages</h2>
+        <ul>
+          <li>English (C1)</li>
+          <li>Hungarian (mother tongue)</li>
+          <li>Japanese (very basic knowledge)</li>
+        </ul>
+      </section>
+      <section>
+        <h2>Contact me</h2>
+        <form action="results.html" method="get">
+          <div>
+            <label for="name">Name:</label>
+            <input
+              type="Name"
+              id="name"
+              placeholder="John Doe"
+              required
+              minlength="5"
+            />
+          </div>
+          <div>
+            <label for="email">Email:</label>
+            <input
+              type="Email"
+              id="email"
+              placeholder="example@gmail.com"
+              required
+            />
+          </div>
+          <div>
+            <label for="messageField">Message</label>
+            <div>
+              <textarea
+                type="Text"
+                id="messageField"
+                rows="4"
+                cols="50"
+                required
+                minlength="20"
+              ></textarea>
+            </div>
+          </div>
+          <input type="submit" value="Submit" />
+        </form>
+      </section>
+    </main>
+    <footer>
+      <a class="btnToTop" href="#top">Back to Top</a>
+    </footer>
+  </body>
+</html>
