@@ -57,7 +57,7 @@ let process = (fetchPromises) => {
               player.position +
               ", " +
               player.club +
-              ", " +
+              " " +
               "<br />"
           );
         });
