@@ -13,31 +13,24 @@ Promise.all(data.map((url) => fetch(url)))
     console.log(`ERROR: `, err.message);
   });
 
-const stepIn = (fetchPromises) => {
-  fetchPromises.then((extractedData) => {
-    Object.keys(extractedData[`sheets`])[0] === `Teams`
-      ? printOutTeam(extractedData)
-      : printOutPlayers(extractedData);
+const stepIn = (data) => {
+  data.then((data) => {
+    Object.keys(data[`sheets`])[0] === `Teams`
+      ? printOutTeam(data)
+      : printOutPlayers(data);
   });
 };
 
-const printOutTeam = (extractedData) => {
-  Object.entries(extractedData[`sheets`][`Teams`][21]).forEach(
-    (aspect) =>
-      (document.querySelector(`#team`).innerHTML +=
-        aspect[0] + `: ` + aspect[1] + `<br />`)
-  );
+const printOutTeam = (data) => {
+  document.querySelector(`#team`).innerHTML = Object.entries(
+    data[`sheets`][`Teams`][21]
+  )
+    .map((aspect) => `${aspect[0]}: ${aspect[1]}<br />`)
+    .join("");
 };
 
-const printOutPlayers = (extractedData) => {
-  extractedData[`sheets`][`Players`].forEach((player) => {
-    document.querySelector(`#player`).innerHTML +=
-      player.name +
-      `, ` +
-      player.position +
-      `, ` +
-      player.club +
-      ` ` +
-      `<br />`;
-  });
+const printOutPlayers = (data) => {
+  document.querySelector(`#player`).innerHTML = data[`sheets`][`Players`]
+    .map((player) => `${player.name}, ${player.position}, ${player.club}<br />`)
+    .join("");
 };
