@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link rel="stylesheet" href="./style.css" />
+    <link
+      rel="stylesheet"
+      href="./font-awesome-4.7.0/css/font-awesome.min.css"
+      type="text/css"
+    />
+    <script
+      src="https://kit.fontawesome.com/2775dc590a.js"
+      crossorigin="anonymous"
+      defer
+    ></script>
+    <title>Baby whale ._.</title>
+  </head>
+  <body>
+    <header class="header--dark">
+      <h3 class="header__title">Admin Page</h3>
+      <i class="fa fa-solid fa-bars"></i>
+      <div class="header__search">
+        <input type="text" class="search__input" placeholder="Search for..." />
+        <button class="search__btn">
+          <i class="fa fa-search"></i>
+        </button>
+        <div class="search__customSelect">
+          <select name="user" class="select"></select>
+          <span class="custom__arrow"></span>
+          <i class="fa fa-user"></i>
+          <i class="fa fa-caret-down"></i>
+        </div>
+      </div>
+    </header>
+    <main class="main__content">
+      <aside class="aside__content">
+        <nav class="main__nav">
+          <ul class="nav__ul">
+            <li><header class="nav__header">Core</header></li>
+            <li>
+              <i class="fa fa-tachometer"></i
+              ><a class="nav_selected" href="./index.html">Dashboard</a>
+            </li>
+            <li><header class="nav__header">Interface</header></li>
+            <li>
+              <i class="fa fa-columns" aria-hidden="true"></i
+              ><a class="nav_notSelected" href="./index.html">Layouts </a>
+              <i class="fa fa-solid fa-angle-right"></i>
+            </li>
+            <li>
+              <i class="fa fa-bookmark"></i
+              ><a class="nav_notSelected" href="./index.html">Pages </a>
+              <i class="fa fa-solid fa-angle-right"></i>
+            </li>
+
+            <li><header class="nav__header">Addons</header></li>
+            <li>
+              <i class="fa fa-area-chart"></i
+              ><a class="nav_notSelected" href="./index.html">Charts</a>
+            </li>
+            <li>
+              <i class="fa fa-table"></i
+              ><a class="nav_notSelected" href="./index.html">Tables</a>
+            </li>
+          </ul>
+        </nav>
+      </aside>
+      <section class="content">
+        <h1 class="content__header">Dashboard</h1>
+        <div class="main__breadcrumb">
+          <b class="main__breadcrumb--bold">Dashboard</b>
+        </div>
+        <div class="main__cards">
+          <div class="main__card main__card--blue">
+            <div class="card__top">Primary Card</div>
+            <div class="card__bottom">
+              View Details<i class="fa fa-solid fa-angle-right"></i>
+            </div>
+          </div>
+          <div class="main__card main__card--yellow">
+            <div class="card__top">Warning Card</div>
+            <div class="card__bottom">
+              View Details<i class="fa fa-solid fa-angle-right"></i>
+            </div>
+          </div>
+          <div class="main__card main__card--green">
+            <div class="card__top">Success Card</div>
+            <div class="card__bottom">
+              View Details<i class="fa fa-solid fa-angle-right"></i>
+            </div>
+          </div>
+          <div class="main__card main__card--red">
+            <div class="card__top">Danger Card</div>
+            <div class="card__bottom">
+              View Details<i class="fa fa-solid fa-angle-right"></i>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+  </body>
+</html>
