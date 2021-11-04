@@ -1,0 +1,31 @@
+{
+  "name": "javascript-advanced",
+  "version": "1.0.0",
+  "description": "A Training360 5 napos JavaScript haladó képzésének forrásfilejai a videók nélkül. A tananyag 19 modult tartalmaz, a videós anyag 15 órányi,  194 videó.",
+  "main": "index.js",
+  "type": "module",
+  "scripts": {
+    "test": "node --experimental-vm-modules --no-warnings ./node_modules/jest/bin/jest",
+    "test:number": "npm run test ./05-number"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Training360/javascript-halado.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Training360/javascript-halado/issues"
+  },
+  "homepage": "https://github.com/Training360/javascript-halado#readme",
+  "devDependencies": {
+    "@jest/globals": "^27.3.1",
+    "@types/jest": "^27.0.2",
+    "eslint": "^7.7.0",
+    "eslint-config-airbnb-base": "^14.2.0",
+    "eslint-plugin-import": "^2.22.0",
+    "eslint-plugin-jest": "^25.2.1",
+    "jest": "^27.2.5",
+    "jsdom": "^18.0.1"
+  }
+}
