@@ -1,12 +1,21 @@
 const playArea = document.querySelector(`.playArea`);
 let startingPlayer = Math.round(Math.random());
+let drawTrigger;
 
 const addMark = (ev) => {
   startingPlayer === 1
-    ? (ev.target.innerHTML = `X`)
-    : (ev.target.innerHTML = `O`);
+    ? (ev.target.textContent = `X`)
+    : (ev.target.textContent = `O`);
   checkWin();
-  startingPlayer === 1 ? (startingPlayer = 0) : (startingPlayer = 1);
+  startingPlayer ^= 1;
+  // startingPlayer = 1 - startingPlayer; //OMG THIS WORKS???
+  // Also this: startingPlayer  = startingPlayer ^ 1 (XOR longer variant)
+  /*Explanation: 
+    0 xor 0 = 0 Same Bits
+    1 xor 1 = 0 Same Bits
+    1 xor 0 = 1 Different Bits
+    0 xor 1 = 1 Different Bits
+    */
 };
 
 function createBoard() {
@@ -27,8 +36,11 @@ function winCondition() {
   document.querySelector(`#endScreen`).style.display = `flex`;
   document.querySelector(`.restart__btn`).style.display = `block`;
   startingPlayer === 1
-    ? (document.querySelector(`.winner`).innerHTML = "X")
-    : (document.querySelector(`.winner`).innerHTML = "O");
+    ? (document.querySelector(`.winner`).textContent = "X")
+    : (document.querySelector(`.winner`).textContent = "O");
+  if (drawTrigger === 1) {
+    document.querySelector(`#endScreen h2`).textContent = "It's a Draw!";
+  }
 }
 
 const winConditions = [
@@ -42,20 +54,20 @@ const winConditions = [
   gridArray.filter((_, index) => index % 2 === 0 && index > 0 && index < 8),
 ];
 
+//Tóth Gábor gyönyörű megoldása
 function checkWin() {
-  for (let i = 0; i < winConditions.length; i++) {
-    let xCounter = 0;
-    let oCounter = 0;
-    for (let j = 0; j < winConditions[i].length; j++) {
-      if (winConditions[i][j].textContent === `X`) {
-        xCounter++;
-      }
-      if (winConditions[i][j].textContent === `O`) {
-        oCounter++;
-      }
-    }
-    if (xCounter === 3 || oCounter === 3) {
-      winCondition();
-    }
+  if (
+    winConditions.some(
+      (cond) =>
+        cond.every((e) => e.textContent === "X") ||
+        cond.every((e) => e.textContent === "O")
+    )
+  ) {
+    winCondition();
+  } else if (
+    winConditions.every((cell) => cell.every((e) => e.textContent !== ""))
+  ) {
+    drawTrigger = 1;
+    winCondition();
   }
 }
