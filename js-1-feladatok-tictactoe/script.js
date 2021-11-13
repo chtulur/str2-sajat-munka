@@ -8,14 +8,6 @@ const addMark = (ev) => {
     : (ev.target.textContent = `O`);
   checkWin();
   startingPlayer ^= 1;
-  // startingPlayer = 1 - startingPlayer; //OMG THIS WORKS???
-  // Also this: startingPlayer  = startingPlayer ^ 1 (XOR longer variant)
-  /*Explanation: 
-    0 xor 0 = 0 Same Bits
-    1 xor 1 = 0 Same Bits
-    1 xor 0 = 1 Different Bits
-    0 xor 1 = 1 Different Bits
-    */
 };
 
 function createBoard() {
@@ -27,11 +19,13 @@ function createBoard() {
 }
 createBoard();
 
-let grid = document.querySelectorAll(`.cell`);
+const grid = document.querySelectorAll(`.cell`);
 const gridArray = Array.from(grid);
-grid.forEach((cell) => cell.addEventListener(`click`, addMark, { once: true }));
+gridArray.forEach((cell) =>
+  cell.addEventListener(`click`, addMark, { once: true })
+);
 
-function winCondition() {
+function endGame(drawTrigger) {
   document.querySelector(`#body`).style.backgroundColor = `rgba(0, 0, 0, 0.7`;
   document.querySelector(`#endScreen`).style.display = `flex`;
   document.querySelector(`.restart__btn`).style.display = `block`;
@@ -54,7 +48,7 @@ const winConditions = [
   gridArray.filter((_, index) => index % 2 === 0 && index > 0 && index < 8),
 ];
 
-//Tóth Gábor gyönyörű megoldása
+//Tóth Gábor's beauty of a solution
 function checkWin() {
   if (
     winConditions.some(
@@ -63,11 +57,8 @@ function checkWin() {
         cond.every((e) => e.textContent === "O")
     )
   ) {
-    winCondition();
-  } else if (
-    winConditions.every((cell) => cell.every((e) => e.textContent !== ""))
-  ) {
-    drawTrigger = 1;
-    winCondition();
+    endGame(0);
+  } else if (gridArray.every((cell) => cell.textContent !== "")) {
+    endGame(1);
   }
 }
