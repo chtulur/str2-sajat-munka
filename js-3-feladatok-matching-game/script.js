@@ -22,21 +22,7 @@ const patternGen = () => {
 
 const generatePlayArea = () => {
   for (let i = 0; i < 10; i++) {
-    const card = document.createElement("div");
-    const cardInner = document.createElement("div");
-    const cardFront = document.createElement("div");
-    const cardBack = document.createElement("div");
-    const cardBackPattern = document.createElement("div");
-    playArea.appendChild(card);
-    card.appendChild(cardInner);
-    cardInner.appendChild(cardFront);
-    cardInner.appendChild(cardBack);
-    cardBack.appendChild(cardBackPattern);
-    card.classList.add("card");
-    cardInner.classList.add("cardInner");
-    cardFront.classList.add("cardFront");
-    cardBack.classList.add("cardBack");
-    cardBackPattern.classList.add(patternGen());
+    playArea.innerHTML += `<div class="card"><div class="cardInner"><div class="cardFront"></div><div class="cardBack"><div class="${patternGen()}"></div></div></div></div>`;
   }
 };
 generatePlayArea();
@@ -61,12 +47,10 @@ const startTimer = () => {
 };
 
 const initTimer = () => {
-  if (timeTrigger === true) {
-    timeTrigger = false;
-    startTimer();
-    timerInterval = setInterval(startTimer, 1000);
-  }
+  startTimer();
+  timerInterval = setInterval(startTimer, 1000);
 };
+
 const resetPattern = () => {
   const cards = document.querySelectorAll(".cardBack div");
   setTimeout(() => {
@@ -76,26 +60,31 @@ const resetPattern = () => {
   }, 500);
 };
 
+const resetGame = () => {
+  document.querySelector("#timer").textContent = "0:00";
+  cardsArr.map((card) => {
+    card.style.transform = "rotateY(0)";
+    card.classList.remove("matched");
+  });
+  time = 0;
+  timeTrigger = true;
+  resetPattern();
+};
+
 const checkForWin = () => {
   if (cardsArr.every((card) => card.classList.contains("matched"))) {
     clearInterval(timerInterval);
-    setTimeout(() => {
-      document.querySelector("#timer").textContent = "0:00";
-      cardsArr.map((card) => {
-        card.style.transform = "rotateY(0)";
-        card.classList.remove("matched");
-      });
-      time = 0;
-      timeTrigger = true;
-      resetPattern();
-    }, 5000);
+    setTimeout(resetGame, 5000);
   }
 };
 
 function flipOver(ev) {
   flipCounter++;
   ev.currentTarget.style.transform = "rotateY(180deg)";
-  initTimer();
+  if (timeTrigger === true) {
+    timeTrigger = false;
+    initTimer();
+  }
   const flipped = cardsArr.filter(
     (card) =>
       card.style.transform === "rotateY(180deg)" &&
