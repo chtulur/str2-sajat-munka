@@ -1,3 +1,8 @@
+const arr =
+  "cardBackPatternI cardBackPatternII cardBackPatternIII cardBackPatternIV cardBackPatternV cardBackPatternI cardBackPatternII cardBackPatternIII cardBackPatternIV cardBackPatternV".split(
+    " "
+  );
+let arrayCopy;
 const playArea = document.querySelector("#playArea");
 let flipCounter = 0;
 const startingMinutes = 0;
@@ -5,11 +10,23 @@ let time = startingMinutes / 60;
 let timeTrigger = true;
 let timerInterval;
 
-const arr =
-  "cardBackPatternI cardBackPatternII cardBackPatternIII cardBackPatternIV cardBackPatternV cardBackPatternI cardBackPatternII cardBackPatternIII cardBackPatternIV cardBackPatternV".split(
-    " "
-  );
-let arrayCopy;
+const seconds = () => {
+  return time < 10 ? "0" + (time % 60) : time % 60;
+};
+
+const initTimer = () => {
+  if (!timeTrigger === true) return;
+  timeTrigger = false;
+  startTimer();
+  timerInterval = setInterval(startTimer, 1000);
+};
+
+const startTimer = () => {
+  const minutes = Math.floor(time / 60);
+  document.querySelector("#timer").textContent = `${minutes}:${seconds()}`;
+  time++;
+};
+
 const generateArray = () => {
   arrayCopy = arr.map((card) => card);
   return arrayCopy;
@@ -30,23 +47,6 @@ generatePlayArea();
 const cards = document.querySelectorAll(".cardInner");
 const cardsArr = Array.from(cards);
 cardsArr.forEach((card) => card.addEventListener("click", flipOver));
-
-const seconds = () => {
-  return time < 10 ? "0" + (time % 60) : time % 60;
-};
-
-const startTimer = () => {
-  const minutes = Math.floor(time / 60);
-  document.querySelector("#timer").textContent = `${minutes}:${seconds()}`;
-  time++;
-};
-
-const initTimer = () => {
-  if (!timeTrigger === true) return;
-  timeTrigger = false;
-  startTimer();
-  timerInterval = setInterval(startTimer, 1000);
-};
 
 const resetPattern = () => {
   const cards = document.querySelectorAll(".cardBack div");
