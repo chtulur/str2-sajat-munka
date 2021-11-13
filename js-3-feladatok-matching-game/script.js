@@ -74,17 +74,20 @@ const checkForWin = () => {
   }
 };
 
-function flipOver(ev) {
-  flipCounter++;
-  ev.currentTarget.style.transform = "rotateY(180deg)";
-  initTimer();
-  const flipped = cardsArr.filter(
+const isFLipped = () => {
+  return cardsArr.filter(
     (card) =>
       card.style.transform === "rotateY(180deg)" &&
       !card.classList.contains("matched")
   );
+};
+
+function flipOver(ev) {
+  flipCounter++;
+  ev.currentTarget.style.transform = "rotateY(180deg)";
+  initTimer();
   if (flipCounter === 2) {
-    checkForMatches(flipped);
+    checkForMatches(isFLipped());
     checkForWin();
   }
 }
