@@ -49,6 +49,7 @@ const cardsArr = Array.from(cards);
 cardsArr.forEach((card) => card.addEventListener("click", flipOver));
 
 const resetPattern = () => {
+  document.querySelector("#timer").textContent = "0:00";
   const cards = document.querySelectorAll(".cardBack div");
   setTimeout(() => {
     cards.forEach((card) => (card.className = ""));
