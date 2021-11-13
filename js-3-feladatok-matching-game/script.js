@@ -32,12 +32,7 @@ const cardsArr = Array.from(cards);
 cardsArr.forEach((card) => card.addEventListener("click", flipOver));
 
 const seconds = () => {
-  if (time < 10) {
-    return "0" + (time % 60);
-  }
-  {
-    return time % 60;
-  }
+  return time < 10 ? "0" + (time % 60) : time % 60;
 };
 
 const startTimer = () => {
@@ -47,6 +42,8 @@ const startTimer = () => {
 };
 
 const initTimer = () => {
+  if (!timeTrigger === true) return;
+  timeTrigger = false;
   startTimer();
   timerInterval = setInterval(startTimer, 1000);
 };
@@ -61,7 +58,6 @@ const resetPattern = () => {
 };
 
 const resetGame = () => {
-  document.querySelector("#timer").textContent = "0:00";
   cardsArr.map((card) => {
     card.style.transform = "rotateY(0)";
     card.classList.remove("matched");
@@ -81,10 +77,7 @@ const checkForWin = () => {
 function flipOver(ev) {
   flipCounter++;
   ev.currentTarget.style.transform = "rotateY(180deg)";
-  if (timeTrigger === true) {
-    timeTrigger = false;
-    initTimer();
-  }
+  initTimer();
   const flipped = cardsArr.filter(
     (card) =>
       card.style.transform === "rotateY(180deg)" &&
@@ -96,21 +89,25 @@ function flipOver(ev) {
   }
 }
 
+turnCardsBack = (flipped) => {
+  setTimeout(() => {
+    flipped.map((card) => {
+      card.style.transform = "rotateY(0)";
+      cardsArr.map((card) => (card.style.pointerEvents = "auto"));
+    });
+  }, 600);
+};
+
+const keepCardsFaceUp = (flipped) => {
+  cardsArr.map((card) => (card.style.pointerEvents = "auto"));
+  flipped.map((card) => card.classList.add("matched"));
+};
+
 const checkForMatches = (flipped) => {
   cardsArr.map((card) => (card.style.pointerEvents = "none"));
   flipCounter = 0;
-  if (
-    flipped[0].lastChild.firstChild.className ===
-    flipped[1].lastChild.firstChild.className
-  ) {
-    cardsArr.map((card) => (card.style.pointerEvents = "auto"));
-    flipped.map((card) => card.classList.add("matched"));
-  } else {
-    setTimeout(() => {
-      flipped.map((card) => {
-        card.style.transform = "rotateY(0)";
-        cardsArr.map((card) => (card.style.pointerEvents = "auto"));
-      });
-    }, 600);
-  }
+  flipped[0].lastChild.firstChild.className ===
+  flipped[1].lastChild.firstChild.className
+    ? keepCardsFaceUp(flipped)
+    : turnCardsBack(flipped);
 };
