@@ -61,8 +61,13 @@ const checkForWin = () => {
   if (cardsArr.every((card) => card.classList.contains("matched"))) {
     clearInterval(timerInterval);
     setTimeout(() => {
-      document.querySelector("#timer").textContent = "00:00";
-      cardsArr.map((card) => (card.style.transform = "rotateY(0)"));
+      document.querySelector("#timer").textContent = "0:00";
+      cardsArr.map((card) => {
+        card.style.transform = "rotateY(0)";
+        card.classList.remove("matched");
+      });
+      time = 0;
+      timeTrigger = 1;
     }, 5000);
   }
 };
