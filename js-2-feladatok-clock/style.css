@@ -1,0 +1,20 @@
+@font-face {
+  font-family: "Cyberverse";
+  src: url(./assets/fonts/webfonts/Cyberverse.ttf);
+  font-weight: 100;
+}
+* {
+  font-family: Cyberverse;
+  font-size: 65px;
+}
+body {
+  background-color: black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  width: 100vw;
+}
+#myClock {
+  color: aqua;
+}

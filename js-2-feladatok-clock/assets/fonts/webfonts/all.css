@@ -1,0 +1,32 @@
+@font-face
+{
+    font-family: 'Cyberverse';
+  src: url('Cyberverse.eot');
+      url('Cyberverse.eot?#') format('embedded-opentype'),
+      url('Cyberverse.woff') format('woff'),
+      url('Cyberverse.ttf') format('truetype');
+}
+@font-face
+{
+    font-family: 'Cyberverse Condensed';
+  src: url('Cyberverse Condensed.eot');
+      url('Cyberverse Condensed.eot?#') format('embedded-opentype'),
+      url('Cyberverse Condensed.woff') format('woff'),
+      url('Cyberverse Condensed.ttf') format('truetype');
+}
+@font-face
+{
+    font-family: 'Cyberverse Condensed Italic';
+  src: url('Cyberverse Condensed Italic.eot');
+      url('Cyberverse Condensed Italic.eot?#') format('embedded-opentype'),
+      url('Cyberverse Condensed Italic.woff') format('woff'),
+      url('Cyberverse Condensed Italic.ttf') format('truetype');
+}
+@font-face
+{
+    font-family: 'Cyberverse Italic';
+  src: url('Cyberverse Italic.eot');
+      url('Cyberverse Italic.eot?#') format('embedded-opentype'),
+      url('Cyberverse Italic.woff') format('woff'),
+      url('Cyberverse Italic.ttf') format('truetype');
+}

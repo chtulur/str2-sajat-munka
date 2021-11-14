@@ -1,0 +1,8 @@
+@font-face
+{
+    font-family: 'Cyberverse Condensed Italic';
+  src: url('Cyberverse Condensed Italic.eot');
+      url('Cyberverse Condensed Italic.eot?#') format('embedded-opentype'),
+      url('Cyberverse Condensed Italic.woff') format('woff'),
+      url('Cyberverse Condensed Italic.ttf') format('truetype');
+}
