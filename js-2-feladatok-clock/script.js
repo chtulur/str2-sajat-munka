@@ -40,12 +40,14 @@ const theCLockIsTicking = () => {
     seconds: now.getSeconds(),
   });
 };
+const padding = (num) => {
+  return num < 10 ? `0${num}` : num;
+};
 
 const assignValues = () => {
-  document.querySelector("#hours").innerHTML = digits.hours;
-  document.querySelector("#minutes").innerHTML = digits.minutes;
-  document.querySelector("#seconds").innerHTML =
-    digits.seconds < 10 ? `0${digits.seconds}` : digits.seconds;
+  document.querySelector("#hours").innerHTML = padding(digits.hours);
+  document.querySelector("#minutes").innerHTML = padding(digits.minutes);
+  document.querySelector("#seconds").innerHTML = padding(digits.seconds);
 };
 
 setInterval(() => {
