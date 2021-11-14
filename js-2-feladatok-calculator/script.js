@@ -79,7 +79,6 @@ const calculateResult = (data) => {
   let parts = generateParts(data);
   return extractNumsOperands(parts);
 };
-calculateResult("-10+5");
 
 const collectData = () => {
   const processable = display.textContent;
