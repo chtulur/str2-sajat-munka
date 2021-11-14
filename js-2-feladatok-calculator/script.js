@@ -21,7 +21,13 @@ const clearDisplay = () => {
 const generateParts = (data) => {
   let parts = [];
   let num = "";
-  data.split("").forEach((char) => {
+  let checkegative = data.split("");
+  let extractedNegative = false;
+  if (checkegative[0] === "-") {
+    checkegative.shift();
+    extractedNegative = true;
+  }
+  checkegative.forEach((char) => {
     if (char.match(/[0-9\.]/)) {
       num += char;
     } else {
@@ -31,12 +37,16 @@ const generateParts = (data) => {
     }
   });
   parts.push(parseFloat(num));
+  if (extractedNegative === true) {
+    parts[0] *= -1;
+  }
   return parts;
 };
 
 const calculate = (numbers, operators) => {
   let a;
   let b;
+
   operators.forEach((operator) => {
     result === undefined ? (a = numbers.shift()) : (a = result);
     b = numbers.shift();
@@ -58,11 +68,10 @@ const calculate = (numbers, operators) => {
   display.textContent = result;
   result = undefined;
 };
-console.log(result);
 
 const extractNumsOperands = (parts) => {
-  let operators = parts.filter((e, i) => i % 2 === 2 - 1);
-  let numbers = parts.filter((e, i) => i % 2 === 0);
+  let operators = parts.filter((_, i) => i % 2 === 2 - 1);
+  let numbers = parts.filter((_, i) => i % 2 === 0);
   return calculate(numbers, operators);
 };
 
@@ -70,8 +79,7 @@ const calculateResult = (data) => {
   let parts = generateParts(data);
   return extractNumsOperands(parts);
 };
-
-calculateResult("10.0+8x43");
+calculateResult("-10+5");
 
 const collectData = () => {
   const processable = display.textContent;
