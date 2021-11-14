@@ -2,7 +2,7 @@ let result;
 const display = document.querySelector(".display-text");
 
 const numericProcessor = (ev) => {
-  if (display.textContent === "ERROR") {
+  if (display.textContent === "ERROR" || display.textContent === "NaN") {
     display.textContent = "";
   }
   const num = ev.target.textContent;
@@ -21,13 +21,14 @@ const clearDisplay = () => {
 const generateParts = (data) => {
   let parts = [];
   let num = "";
-  let checkegative = data.split("");
-  let extractedNegative = false;
-  if (checkegative[0] === "-") {
-    checkegative.shift();
-    extractedNegative = true;
+  let isOperatorStart = data.split("");
+  let isExtracted = false;
+  let extractedOpertaor;
+  if (isOperatorStart[0].match(/[-+÷x]/)) {
+    extractedOpertaor = isOperatorStart.shift();
+    isExtracted = true;
   }
-  checkegative.forEach((char) => {
+  isOperatorStart.forEach((char) => {
     if (char.match(/[0-9\.]/)) {
       num += char;
     } else {
@@ -37,8 +38,12 @@ const generateParts = (data) => {
     }
   });
   parts.push(parseFloat(num));
-  if (extractedNegative === true) {
-    parts[0] *= -1;
+  isExtracted === true && extractedOpertaor === "-"
+    ? (parts[0] *= -1)
+    : parts[0];
+  if (Number.isNaN(parts[parts.length - 1])) {
+    parts.pop();
+    parts.pop();
   }
   return parts;
 };
