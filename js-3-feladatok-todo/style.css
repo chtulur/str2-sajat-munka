@@ -134,6 +134,7 @@ body {
   padding: 0.4rem;
   width: 92%;
   margin: 0.3rem 0 0.3rem 0;
+  position: relative;
 }
 .entry-completed {
   background-color: #d68f79e1;
@@ -143,6 +144,8 @@ body {
 }
 
 .fa-trash {
+  position: absolute;
+  right: 0.4rem;
   font-size: 1.1rem;
   margin-left: auto;
   visibility: hidden;

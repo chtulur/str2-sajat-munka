@@ -246,16 +246,27 @@ const switchShowCompleted = () => {
 ///////////////////////////////////////////////////////////////////////
 //DELETE//
 const deleteItem = (ev) => {
-  ev.target.parentElement.remove();
-  countItems();
-  if (
-    ev.target.parentElement.classList.contains("entry-completed") &&
-    completedEntries.childElementCount >= 1
-  ) {
-  } else {
-    isPendingEmpty();
-  }
-  removeFromLocalStorageOnDelete(ev.target.parentElement);
+  ev.target.parentElement
+    .animate(
+      [
+        { transform: "translateX(0)" },
+        { transform: "translateX(100px)" },
+        { transform: "translateX(300px)" },
+      ],
+      { duration: 100 }
+    )
+    .finished.then(() => {
+      ev.target.parentElement.remove();
+      countItems();
+      if (
+        ev.target.parentElement.classList.contains("entry-completed") &&
+        completedEntries.childElementCount >= 1
+      ) {
+      } else {
+        isPendingEmpty();
+      }
+      removeFromLocalStorageOnDelete(ev.target.parentElement);
+    });
 };
 //DELETE OVER//
 ///////////////////////////////////////////////////////////////////////
