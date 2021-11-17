@@ -1,5 +1,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Crimson+Pro:wght@300&display=swap");
 * {
+  box-sizing: border-box;
   overflow-x: hidden;
   font-size: 20px;
   font-family: "Crimson Pro", serif;
@@ -19,6 +20,7 @@ body {
   flex-direction: column;
 }
 #header {
+  overflow-y: hidden;
   font-size: 2rem;
   color: rgb(223, 223, 223);
 }
@@ -59,19 +61,19 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  margin: 0.5rem !important;
 }
 .user-input {
+  padding-left: 0.5rem !important;
   border: transparent;
   width: 85%;
   border-radius: 4px 0 0 4px;
   height: 2rem;
   background-color: rgb(212, 212, 212);
 }
-.user-input::placeholder {
-  padding-left: 0.5rem !important;
-}
 
 .user-input:focus {
+  padding-left: 1rem;
   outline: none;
   background-color: white;
 }
@@ -79,7 +81,7 @@ body {
 .add-btn {
   position: relative;
   background-color: rgb(139, 139, 139);
-  height: 2.15rem;
+  height: 2rem;
   border-radius: 0 4px 4px 0;
   width: 15%;
   color: aliceblue;
@@ -110,6 +112,7 @@ body {
 }
 .taskhandler::-webkit-scrollbar-track {
   background-color: rgb(253, 179, 95);
+  height: 95%;
 }
 .field-headers {
   font-size: 1.1rem;

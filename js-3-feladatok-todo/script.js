@@ -124,7 +124,7 @@ const createChild = (entry) => {
   toDoEntries.insertBefore(div, toDoEntries.firstChild);
   document.querySelector(
     ".to-do-field .entry-pending"
-  ).innerHTML = `<input type="checkbox" class="checkbox" id="checkbox_ID" /><label class="entry-labels label"for="checkbox_ID">${entry}</label><i class="fas fa-trash"></i>`;
+  ).innerHTML = `<input type="checkbox" class="checkbox" /><label class="entry-labels label">${entry}</label><i class="fas fa-trash"></i>`;
   document.querySelector(".to-do-field .entry-pending");
 };
 //UTILITIES OVER//
@@ -146,7 +146,7 @@ const addBackToPending = (ev) => {
 const marquesDoneNewEntry = (ev) => {
   const entry = ev.target.parentElement.textContent;
   ev.target.parentElement.remove();
-  completedEntries.innerHTML += `<div class="entry-completed entry"><input type="checkbox" class="checkbox"id="checkbox_ID" checked /><label class="completed-labels label" for="checkbox_ID">${entry}</label><i class="fas fa-trash"></i></div>`;
+  completedEntries.innerHTML += `<div class="entry-completed entry"><input type="checkbox" class="checkbox" checked /><label class="completed-labels label">${entry}</label><i class="fas fa-trash"></i></div>`;
   marquesDoneEvents();
   countItems();
   trashListener();
@@ -318,7 +318,7 @@ const loadCompletedArrayFromStorage = () => {
 };
 
 const completedGenerateFromStorage = (entry) => {
-  completedEntries.innerHTML += `<div class="entry-completed entry"><input type="checkbox" class="checkbox"id="checkbox_ID" checked /><label class="completed-labels label" for="checkbox_ID">${entry}</label><i class="fas fa-trash"></i></div>`;
+  completedEntries.innerHTML += `<div class="entry-completed entry"><input type="checkbox" class="checkbox" checked /><label class="completed-labels label" >${entry}</label><i class="fas fa-trash"></i></div>`;
   marquesDoneEvents();
   countItems();
   trashListener();
