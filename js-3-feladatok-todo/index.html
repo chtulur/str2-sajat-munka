@@ -6,12 +6,51 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link rel="stylesheet" href="./style.css" />
     <script src="./script.js" defer></script>
+    <script
+      src="https://kit.fontawesome.com/2775dc590a.js"
+      crossorigin="anonymous"
+      defer
+    ></script>
     <title>To-do</title>
   </head>
   <body>
+    <!-- TIME DISPLAY -->
+    <h1 id="header">Daily To-Do list manager</h1>
     <div class="container">
       <div class="time"></div>
-      <input type="text" />
+      <!-- USER INPUT -->
+      <div class="inputfield">
+        <input
+          type="text"
+          class="user-input"
+          placeholder="Take the garbage out"
+        />
+        <button class="add-btn btn" onclick="checkInput()">
+          <span class="plus-btn">+</span>
+        </button>
+      </div>
+      <!-- TO-DO's START FROM HERE-->
+      <div class="taskhandler">
+        <div class="to-do-display">
+          <h2 class="field-headers">
+            You have <span class="pending-items">0</span> pending items
+          </h2>
+        </div>
+        <div class="to-do-field"></div>
+        <div class="number-of-completed">
+          <h2 class="field-headers">Completed tasks:</h2>
+          <span class="completion-percentage">0</span>
+        </div>
+        <div class="completed-task-field"></div>
+
+        <div class="rest-now">All done! You can take a rest now! 🍺</div>
+      </div>
+
+      <!-- BOTTOM BTNs FROM HERE -->
+      <div class="bottom-btns">
+        <button class="show-complete btn">Show Completed</button>
+        <button class="clear-all btn">Clear All</button>
+      </div>
     </div>
   </body>
 </html>
