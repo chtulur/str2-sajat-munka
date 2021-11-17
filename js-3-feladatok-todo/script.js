@@ -1,4 +1,5 @@
-//Handling Time
+///////////////////////////////////////////////////////////////////////
+//HANDLING TIME//
 const timeDiv = document.querySelector(".time");
 const localTime = new Intl.DateTimeFormat().resolvedOptions();
 const now = new Date();
@@ -17,8 +18,11 @@ const time = (date) => {
 };
 time(now);
 timeDiv.innerHTML = `${nowArr[0]}<br>${nowArr[1]} `;
+//HANDLING TIME DONE//
+///////////////////////////////////////////////////////////////////////
 
-//Handling Time Done!
+///////////////////////////////////////////////////////////////////////
+//ITEMS//
 const noEmptyInput = new RegExp(/^(?!\s*$).+/);
 //buttons
 const trash = document.querySelector(".fa-trash");
@@ -26,6 +30,7 @@ const addBtn = document.querySelector(".add-btn");
 const clearAllBtn = document.querySelector(".clear-all");
 const showCompletedBtn = document.querySelector(".show-complete");
 
+//Input
 const userInput = document.querySelector(".user-input");
 
 //Entry fields
@@ -59,8 +64,13 @@ const completedOnly = Array.from(
 );
 
 let showCompletedSwitch = false;
+let pendingStorageArray = [];
+let completedStorageArray = [];
+//ITEMS OVER//
+///////////////////////////////////////////////////////////////////////
 
-//counting items
+///////////////////////////////////////////////////////////////////////
+//UTILITIES//
 const countItems = () => {
   let max = toDoEntries.childElementCount + completedEntries.childElementCount;
   let result = (completedEntries.childElementCount * 100) / max;
@@ -98,6 +108,30 @@ generateNewEntryEvents = () => {
   );
 };
 
+const marquesDoneEvents = () => {
+  let currentCheckboxes = document.querySelectorAll(
+    ".entry-completed .checkbox"
+  );
+  currentCheckboxes = Array.from(currentCheckboxes);
+  currentCheckboxes.forEach((item) =>
+    item.addEventListener("click", addBackToPending)
+  );
+};
+
+const createChild = (entry) => {
+  let div = document.createElement("div");
+  div.classList.add("entry-pending", "entry");
+  toDoEntries.insertBefore(div, toDoEntries.firstChild);
+  document.querySelector(
+    ".to-do-field .entry-pending"
+  ).innerHTML = `<input type="checkbox" class="checkbox" id="checkbox_ID" /><label class="entry-labels label"for="checkbox_ID">${entry}</label><i class="fas fa-trash"></i>`;
+  document.querySelector(".to-do-field .entry-pending");
+};
+//UTILITIES OVER//
+///////////////////////////////////////////////////////////////////////
+
+///////////////////////////////////////////////////////////////////////
+//MOVE TODOS//
 const addBackToPending = (ev) => {
   const entry = ev.target.parentElement.textContent;
   ev.target.parentElement.remove();
@@ -107,16 +141,6 @@ const addBackToPending = (ev) => {
   trashListener();
   isPendingEmpty();
   toLoacalStoragePendingBack(entry);
-};
-
-const marquesDoneEvents = () => {
-  let currentCheckboxes = document.querySelectorAll(
-    ".entry-completed .checkbox"
-  );
-  currentCheckboxes = Array.from(currentCheckboxes);
-  currentCheckboxes.forEach((item) =>
-    item.addEventListener("click", addBackToPending)
-  );
 };
 
 const marquesDoneNewEntry = (ev) => {
@@ -130,16 +154,6 @@ const marquesDoneNewEntry = (ev) => {
   toLocalStorageCompleted(entry);
 };
 
-const createChild = (entry) => {
-  let div = document.createElement("div");
-  div.classList.add("entry-pending", "entry");
-  toDoEntries.insertBefore(div, toDoEntries.firstChild);
-  document.querySelector(
-    ".to-do-field .entry-pending"
-  ).innerHTML = `<input type="checkbox" class="checkbox" id="checkbox_ID" /><label class="entry-labels label"for="checkbox_ID">${entry}</label><i class="fas fa-trash"></i>`;
-  document.querySelector(".to-do-field .entry-pending");
-};
-
 const generateNewEntry = (input) => {
   userInput.value = "";
   createChild(input);
@@ -150,13 +164,32 @@ const generateNewEntry = (input) => {
   animate();
   toLocalStoragePending(input);
 };
+//MOVE TODOS OVER//
+///////////////////////////////////////////////////////////////////////
 
+///////////////////////////////////////////////////////////////////////
+//UTILITIES//
 const checkInput = () => {
   if (noEmptyInput.test(userInput.value)) {
     generateNewEntry(userInput.value);
   }
 };
 
+const isPendingEmpty = () => {
+  if (!toDoEntries.hasChildNodes()) {
+    youCanRestNow();
+    showCompletedSwitch = true;
+    switchShowCompleted();
+  } else {
+    pendingOnly.forEach((item) => (item.style.visibility = "visible"));
+    document.querySelector(".rest-now").style.visibility = "hidden";
+  }
+};
+//UTILITIES OVER//
+///////////////////////////////////////////////////////////////////////
+
+///////////////////////////////////////////////////////////////////////
+//CLEAR ALL//
 const clearLoop = () => {
   completedEntries;
   while (toDoEntries.firstChild) {
@@ -170,22 +203,15 @@ const clearAll = () => {
   isPendingEmpty();
   removeFromPendingOnClearAll();
 };
+//CLEAR ALL OVER//
+///////////////////////////////////////////////////////////////////////
 
+///////////////////////////////////////////////////////////////////////
+//SHOW COMPLETED BUTTON//
 const youCanRestNow = () => {
   document.querySelector(".rest-now").style.visibility = "visible";
   toDoChildren.forEach((item) => (item.style.visibility = "hidden"));
   showCompletedBtn.textContent = "Show Completed";
-};
-
-const isPendingEmpty = () => {
-  if (!toDoEntries.hasChildNodes()) {
-    youCanRestNow();
-    showCompletedSwitch = true;
-    switchShowCompleted();
-  } else {
-    pendingOnly.forEach((item) => (item.style.visibility = "visible"));
-    document.querySelector(".rest-now").style.visibility = "hidden";
-  }
 };
 
 const showCompletedON = () => {
@@ -214,7 +240,11 @@ const switchShowCompleted = () => {
     showCompletedOFF();
   }
 };
+//SHOW COMPLETED BUTTON OVER//
+///////////////////////////////////////////////////////////////////////
 
+///////////////////////////////////////////////////////////////////////
+//DELETE//
 const deleteItem = (ev) => {
   ev.target.parentElement.remove();
   countItems();
@@ -227,10 +257,11 @@ const deleteItem = (ev) => {
   }
   removeFromLocalStorageOnDelete(ev.target.parentElement);
 };
+//DELETE OVER//
+///////////////////////////////////////////////////////////////////////
 
-let pendingStorageArray = [];
-let completedStorageArray = [];
-
+///////////////////////////////////////////////////////////////////////
+//LOCAL STORAGE STORAGE xD//
 const toLocalStoragePending = (input) => {
   pendingStorageArray.push(input);
   localStorage.setItem("Pending", pendingStorageArray);
@@ -267,7 +298,11 @@ const removeFromPendingOnClearAll = () => {
   localStorage.setItem("Pending", "");
   pendingStorageArray = [];
 };
+//LOCAL STORAGE STORAGE OVER//
+///////////////////////////////////////////////////////////////////////
 
+///////////////////////////////////////////////////////////////////////
+//LOCAL STORAGE LOAD//
 const loadPendingArrayFromStorage = () => {
   if (localStorage.getItem("Pending")) {
     pendingStorageArray = [...localStorage.getItem("Pending").split(",")];
@@ -314,15 +349,16 @@ const fillOutCompletedToDo = (arr) => {
 
 loadPendingArrayFromStorage();
 loadCompletedArrayFromStorage();
+//LOCAL STORAGE LOAD DONE//
+///////////////////////////////////////////////////////////////////////
 
-const specialEnter = new CustomEvent("click", { checkInput });
-
+///////////////////////////////////////////////////////////////////////
+//JUST SOME EVENT LISTENERS//
 addBtn.addEventListener("click", checkInput);
 userInput.addEventListener("keypress", (ev) => {
   if (ev.keyCode === 13) {
     checkInput();
   }
 });
-
 clearAllBtn.addEventListener("click", clearAll);
 showCompletedBtn.addEventListener("click", switchShowCompleted);

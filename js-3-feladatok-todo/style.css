@@ -93,7 +93,7 @@ body {
 
 /*INPUT END*/
 
-/*INPUT HANDLED TOGETHER*/
+/*Todos HANDLED TOGETHER*/
 .taskhandler {
   flex: 8;
   overflow: auto;
