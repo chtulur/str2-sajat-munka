@@ -1,36 +1,30 @@
-const data = [
-  `https://raw.githubusercontent.com/jokecamp/FootballData/master/UEFA_European_Championship/Euro%202016/players_json/teams.json`,
-  `https://raw.githubusercontent.com/jokecamp/FootballData/master/UEFA_European_Championship/Euro%202016/players_json/hungary-players.json`,
-];
-
-Promise.all(data.map((url) => fetch(url)))
-  .then((data) => {
-    data.forEach((file) => {
-      stepIn(file.json());
-    });
-  })
-  .catch((err) => {
-    console.log(`ERROR: `, err.message);
-  });
-
-const stepIn = (data) => {
-  data.then((data) => {
-    Object.keys(data[`sheets`])[0] === `Teams`
-      ? printOutTeam(data)
-      : printOutPlayers(data);
-  });
+const getData = async () => {
+  const data = [
+    `https://raw.githubusercontent.com/jokecamp/FootballData/master/UEFA_European_Championship/Euro%202016/players_json/teams.json`,
+    `https://raw.githubusercontent.com/jokecamp/FootballData/master/UEFA_European_Championship/Euro%202016/players_json/hungary-players.json`,
+  ];
+  try {
+    let arr = await Promise.all(
+      data.map((url) => fetch(url).then((response) => response.json()))
+    );
+    printTeam(arr);
+    printPlayers(arr);
+  } catch (err) {
+    console.error(err.message);
+  }
 };
+getData();
 
-const printOutTeam = (data) => {
+const printTeam = (arr) => {
   document.querySelector(`#team`).innerHTML = Object.entries(
-    data[`sheets`][`Teams`][21]
+    arr[0]["sheets"]["Teams"][21]
   )
-    .map((aspect) => `${aspect[0]}: ${aspect[1]}<br />`)
+    .map((info) => `${info[0]}: ${info[1]}<br />`)
     .join("");
 };
 
-const printOutPlayers = (data) => {
-  document.querySelector(`#player`).innerHTML = data[`sheets`][`Players`]
+const printPlayers = (arr) => {
+  document.querySelector(`#player`).innerHTML = arr[1]["sheets"]["Players"]
     .map((player) => `${player.name}, ${player.position}, ${player.club}<br />`)
     .join("");
 };
