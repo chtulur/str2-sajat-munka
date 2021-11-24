@@ -8,6 +8,7 @@ const addMark = (ev) => {
     : (ev.target.textContent = `O`);
   checkWin();
   startingPlayer ^= 1;
+  console.log(startingPlayer);
 };
 
 function createBoard() {
