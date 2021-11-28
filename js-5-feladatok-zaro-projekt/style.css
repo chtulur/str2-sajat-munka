@@ -33,13 +33,19 @@ tr:nth-child(even) {
 .btns {
   display: flex;
   justify-content: flex-end;
-  cursor: pointer;
+  align-items: center;
 }
 
 .btn {
   all: unset;
+  cursor: pointer;
   padding: 0.6rem;
   border-radius: 4px;
+  height: 1.8rem;
+  width: 1.8rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .btn:active {
@@ -53,7 +59,6 @@ tr:nth-child(even) {
 
 .delete-btn {
   padding: 0.7rem;
-  width: 1.05rem;
   background-color: #d10f0fc0;
   margin-left: 0.4rem;
   margin-right: 0;

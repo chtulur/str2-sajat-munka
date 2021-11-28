@@ -1,6 +1,6 @@
 import callToast from "./toast.js";
 
-const usersJson = "http://localhost:3000/users";
+const usersURL = "http://localhost:3000/users";
 const tbody = document.querySelector("tbody");
 
 let savedData = [];
@@ -19,9 +19,11 @@ const appendRow = ({ id, name, emailAddress, address }) => {
 };
 
 const getList = async () => {
-  return await fetch(usersJson)
-    .then((response) => response.json())
-    .catch((err) => console.error(err));
+  try {
+    return await axios.get(usersURL).then((response) => response.data);
+  } catch (err) {
+    console.error(err);
+  }
 };
 
 const getUsers = () => {
