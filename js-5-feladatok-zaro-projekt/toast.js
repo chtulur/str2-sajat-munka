@@ -1,3 +1,5 @@
+const toastContainer = document.querySelector(".toast-container");
+
 const callToast = (type, message, timeout = 5000) => {
   let toastDiv = document.createElement("div");
   toastDiv.classList.add(`toast-${type}`, "toast");
@@ -10,3 +12,5 @@ const callToast = (type, message, timeout = 5000) => {
     toastDiv.remove();
   });
 };
+
+export default callToast;

@@ -1,34 +1,36 @@
+import callToast from "./toast.js";
+
 const usersJson = "http://localhost:3000/users";
-const body = document.querySelector("body");
 const tbody = document.querySelector("tbody");
-const toastContainer = document.querySelector(".toast-container");
 
 let savedData = [];
 
-const createTable = ({ id, name, emailAddress, address }) => {
+const appendRow = ({ id, name, emailAddress, address }) => {
   tbody.innerHTML += `<tr>
     <td title="${id}">${id}</td>
     <td title="${name}">${name}</td>
     <td title="${emailAddress}">${emailAddress}</td>
     <td title="${address}">${address}</td>
-    <td title="" class="btns">
-      <button class="edit-btn btn"><i class="fa fa-cog"></i></button>
-      <button class="delete-btn btn"><i class="fa fa-trash"></i></button>
+    <td class="btns">
+      <button title="Edit user" class="edit-btn btn"><i class="fa fa-cog"></i></button>
+      <button title="Delete user" class="delete-btn btn"><i class="fa fa-trash"></i></button>
     </td>
    </tr>`;
 };
 
-const getUsers = async () => {
-  try {
-    let arr = await fetch(usersJson).then((response) => response.json());
-    for (let i = 0; i < arr.length; i++) {
-      let user = arr[i];
-      createTable(user);
+const getList = async () => {
+  return await fetch(usersJson)
+    .then((response) => response.json())
+    .catch((err) => console.error(err));
+};
+
+const getUsers = () => {
+  getList().then((response) => {
+    for (let user of response) {
+      appendRow(user);
     }
     activateListeners();
-  } catch (err) {
-    console.error(err);
-  }
+  });
 };
 getUsers();
 
@@ -39,8 +41,8 @@ const editListenerHandlers = (currentElement) => {
 };
 
 const openEditMode = (ev) => {
-  currentElement = ev.target.parentNode;
-  currentRow = ev.target.parentNode.parentNode;
+  let currentElement = ev.target.parentNode;
+  let currentRow = ev.target.parentNode.parentNode;
   addEditClassToRow(currentRow);
   addEditBtns(ev);
   addInputFields(currentRow);
@@ -73,22 +75,9 @@ const displayWarning = (ev) => {
   }
 };
 
-// const callToast = (type, message, timeout = 5000) => {
-//   let toastDiv = document.createElement("div");
-//   toastDiv.classList.add(`toast-${type}`, "toast");
-//   toastDiv.textContent = `${message}`;
-//   toastContainer.appendChild(toastDiv);
-//   setTimeout(() => {
-//     toastDiv.remove();
-//   }, timeout);
-//   toastDiv.addEventListener("click", () => {
-//     toastDiv.remove();
-//   });
-// };
-
 const addEditBtns = (ev) => {
-  ev.target.parentNode.innerHTML = `<button class="confirm-btn btn"><i class="fa fa-check"></i></button>
-  <button class="undo-btn btn"><i class="fa fa-rotate-left"></i></button>`;
+  ev.target.parentNode.innerHTML = `<button title="Confirm" class="confirm-btn btn"><i class="fa fa-check"></i></button>
+  <button title="Undo edit" class="undo-btn btn"><i class="fa fa-rotate-left"></i></button>`;
 };
 
 const addInputFields = (currentRow) => {
@@ -116,12 +105,12 @@ const resetEdit = (currentRow) => {
 };
 
 const resetBtns = (currentRow) => {
-  currentRow.children[4].innerHTML = `<button class="edit-btn btn"><i class="fa fa-cog"></i></button>
-   <button class="delete-btn btn"><i class="fa fa-trash"></i></button>`;
+  currentRow.children[4].innerHTML = `<button title="Edit user" class="edit-btn btn"><i class="fa fa-cog"></i></button>
+   <button title="Delete user" class="delete-btn btn"><i class="fa fa-trash"></i></button>`;
 };
 
 const undoEdit = (ev) => {
-  currentRow = ev.target.parentNode.parentNode;
+  let currentRow = ev.target.parentNode.parentNode;
   resetBtns(currentRow);
   resetEdit(currentRow, savedData);
   deactivateIllegalListeners();
@@ -133,8 +122,20 @@ const confirmEdit = (ev) => {
   console.log("hi");
 };
 
+const deleteUserFromDOM = (currentRow) => {
+  currentRow.remove();
+};
+
+const deleteUserFromJSON = (currentRow) => {
+  getList().then((response) => {
+    response.filter((user) => user.id == currentRow.children[0].textContent);
+  });
+};
+
 const deleteUser = (ev) => {
-  console.log("hi");
+  let currentRow = ev.target.parentNode.parentNode;
+  deleteUserFromDOM(currentRow);
+  deleteUserFromJSON(currentRow);
 };
 
 const deactivateListeners = () => {
