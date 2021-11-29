@@ -1,7 +1,6 @@
 # Todo
 
 - USE MODULES!
-- delete button should delete user from DOM AND Json, no warning necessary
 - Validate Data on Success/Confirm (REGEXP)
 - Throw Toast on invalid data
 - Valid data to be saved in DOM and JSON

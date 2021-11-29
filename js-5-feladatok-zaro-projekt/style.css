@@ -116,3 +116,6 @@ tr:nth-child(even) {
 .toast-success {
   background-color: #00c850e3;
 }
+.toast-error {
+  background-color: #dc3546e5;
+}

@@ -1,60 +1,6 @@
 {
   "users": [
     {
-      "id": 1,
-      "name": "Casmerodius albus",
-      "emailAddress": "sharrad0@whitehouse.gov",
-      "address": "14 Boyd Drive"
-    },
-    {
-      "id": 2,
-      "name": "Merops bullockoides",
-      "emailAddress": "csherbrooke1@shutterfly.com",
-      "address": "1 Scott Street"
-    },
-    {
-      "id": 3,
-      "name": "Oryx gazella callotis",
-      "emailAddress": "acayle2@flickr.com",
-      "address": "54 Brentwood Junction"
-    },
-    {
-      "id": 4,
-      "name": "Camelus dromedarius",
-      "emailAddress": "jcrayk3@cloudflare.com",
-      "address": "6313 Dayton Court"
-    },
-    {
-      "id": 5,
-      "name": "Felis rufus",
-      "emailAddress": "jlodford4@aboutads.info",
-      "address": "4 Marquette Way"
-    },
-    {
-      "id": 6,
-      "name": "Merops bullockoides",
-      "emailAddress": "sfountain5@cdbaby.com",
-      "address": "392 Sullivan Park"
-    },
-    {
-      "id": 7,
-      "name": "Dasypus novemcinctus",
-      "emailAddress": "oospillane6@answers.com",
-      "address": "44 Lakewood Pass"
-    },
-    {
-      "id": 8,
-      "name": "Morelia spilotes variegata",
-      "emailAddress": "rmagnar7@thetimes.co.uk",
-      "address": "38 Rutledge Trail"
-    },
-    {
-      "id": 9,
-      "name": "Vulpes chama",
-      "emailAddress": "nbutler8@naver.com",
-      "address": "86 Mcguire Street"
-    },
-    {
       "id": 10,
       "name": "Laniaurius atrococcineus",
       "emailAddress": "wmelsome9@admin.ch",
@@ -71,12 +17,6 @@
       "name": "Scolopax minor",
       "emailAddress": "ojaycoxb@blogs.com",
       "address": "38062 Spaight Street"
-    },
-    {
-      "id": 13,
-      "name": "Cacatua galerita",
-      "emailAddress": "celseyc@cafepress.com",
-      "address": "9 Lighthouse Bay Place"
     },
     {
       "id": 14,

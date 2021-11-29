@@ -1,5 +1,12 @@
 import callToast from "./toast.js";
 
+const nameTest =
+  /^[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]{0,50}$/iu;
+const emailTest =
+  /(?:[a-z0-9!#$%&'*+\/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+\/=?^_`{|}~-]+)*|"(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21\x23-\x5b\x5d-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])*")@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\[(?:(?:(2(5[0-5]|[0-4][0-9])|1[0-9][0-9]|[1-9]?[0-9]))\.){3}(?:(2(5[0-5]|[0-4][0-9])|1[0-9][0-9]|[1-9]?[0-9])|[a-z0-9-]*[a-z0-9]:(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21-\x5a\x53-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])+)\])/;
+const addressTest =
+  /^\d+ [0-9a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöőõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]{0,50}$/iu;
+
 const usersURL = "http://localhost:3000/users";
 const tbody = document.querySelector("tbody");
 
@@ -111,8 +118,7 @@ const resetBtns = (currentRow) => {
    <button title="Delete user" class="delete-btn btn"><i class="fa fa-trash"></i></button>`;
 };
 
-const undoEdit = (ev) => {
-  let currentRow = ev.target.parentNode.parentNode;
+const undoEdit = (currentRow) => {
   resetBtns(currentRow);
   resetEdit(currentRow, savedData);
   deactivateIllegalListeners();
@@ -120,24 +126,60 @@ const undoEdit = (ev) => {
   removeEditClassFromRow(currentRow);
 };
 
-const confirmEdit = (ev) => {
-  console.log("hi");
+const isItTheSame = (currentRow) => {
+  let currentFieldArray = [];
+  let input = Array.from(currentRow.querySelectorAll(".edit-input"));
+  input.forEach((input) => currentFieldArray.push(input.value));
+  return currentFieldArray.sort().join(",") === savedData.sort().join(",")
+    ? true
+    : false;
+};
+
+const warningHandler = () => {
+  console.log("wrong");
+  callToast("warning", "invalid name format");
+  callToast("warning", "invalid email address");
+  callToast("warning", "invalid address (start with postal code)");
+};
+
+const changeDOMandServer = (inputs) => {
+  console.log(inputs);
+};
+
+const validateData = (currentRow) => {
+  const [name, email, address] = Array.from(
+    currentRow.querySelectorAll(".edit-input")
+  ).map((el) => el.value);
+  nameTest.test(name) && emailTest.test(email) && addressTest.test(address)
+    ? changeDOMandServer(inputs)
+    : warningHandler();
+};
+
+const confirmEdit = (currentRow) => {
+  isItTheSame(currentRow) ? undoEdit(currentRow) : validateData(currentRow);
 };
 
 const deleteUserFromDOM = (currentRow) => {
   currentRow.remove();
 };
 
-const deleteUserFromJSON = (currentRow) => {
-  getList().then((response) => {
-    response.filter((user) => user.id == currentRow.children[0].textContent);
+const deleteUserFromServer = (id) => {
+  return axios.delete(`${usersURL}/${id}`).catch((err) => {
+    console.error(err.message);
+    callToast("error", "User was not deleted due to bad server stuff");
   });
 };
 
 const deleteUser = (ev) => {
   let currentRow = ev.target.parentNode.parentNode;
-  deleteUserFromDOM(currentRow);
-  deleteUserFromJSON(currentRow);
+  let id = currentRow.children[0].textContent;
+  deleteUserFromServer(id)
+    .then((response) => {
+      if (response.status) {
+        deleteUserFromDOM(currentRow);
+      }
+    })
+    .catch((err) => console.error(err.message));
 };
 
 const deactivateListeners = () => {
@@ -161,6 +203,12 @@ const activateListeners = () => {
 const activateEditListeners = (currentElement) => {
   currentElement
     .querySelector(".confirm-btn")
-    .addEventListener("click", confirmEdit);
-  currentElement.querySelector(".undo-btn").addEventListener("click", undoEdit);
+    .addEventListener("click", (ev) => {
+      let currentRow = ev.target.parentNode.parentNode;
+      confirmEdit(currentRow);
+    });
+  currentElement.querySelector(".undo-btn").addEventListener("click", (ev) => {
+    let currentRow = ev.target.parentNode.parentNode;
+    undoEdit(currentRow);
+  });
 };
