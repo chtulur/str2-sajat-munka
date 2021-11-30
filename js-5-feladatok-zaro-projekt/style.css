@@ -4,6 +4,139 @@ body {
   box-sizing: border-box;
   font-size: 20px;
 }
+
+.non-modal-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.modal-container {
+  height: 20rem;
+  width: 17rem;
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  padding: 1.5rem;
+  z-index: 2;
+  border: solid 2px black;
+  background-color: white;
+  display: none;
+  flex-direction: column;
+}
+
+.modal-input-container {
+  display: flex;
+  justify-content: space-evenly;
+  align-items: flex-start;
+  flex-direction: row;
+}
+
+.modal-input-info-container > div {
+  padding: 0.5rem;
+}
+
+.modal-input-info-fields {
+  display: flex;
+  flex-direction: column;
+}
+
+.modal-input-info-fields > input {
+  padding: 0.5rem;
+  margin: 0.25rem 0.2rem;
+}
+
+.modal-btn-container {
+  margin-top: 0.8rem;
+  padding: 1rem;
+  display: flex;
+  justify-content: space-between;
+}
+
+.modal-btn-container .modal-btn {
+  padding: 0.5rem 2rem;
+}
+
+.modal-btn-container .modal-confirm-btn {
+  background-color: rgba(1, 172, 1, 0.87);
+}
+
+.modal-btn-container .modal-cancel-btn {
+  background-color: #d10f0fc0;
+}
+.menu-container {
+  width: 80%;
+  height: 10rem;
+}
+
+.new-user {
+  padding: 0.5rem;
+  display: flex;
+  align-items: center;
+}
+
+.add-user-btn,
+.chose-lg-btn {
+  padding: 0.2rem;
+}
+
+.fa-user-plus {
+  font-size: 1.5rem;
+  border-radius: 4px;
+  padding: 0.6rem 0.6rem 0.6rem 0.8rem;
+  background-color: #d8d8d8;
+}
+
+.new-user span {
+  padding: 0.5rem;
+  font-weight: 700;
+}
+
+.choose-language {
+  position: relative;
+  padding: 0.5rem;
+  display: flex;
+}
+
+.fa-language {
+  font-size: 1.5rem;
+  border-radius: 4px;
+  background-color: #d8d8d8;
+  padding: 0.6rem 0.9rem;
+}
+
+.choose-language span {
+  padding: 0.5rem;
+  font-weight: 700;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  left: 0.5rem;
+  top: 3.5rem;
+  background-color: #f1f1f1;
+  min-width: 160px;
+  box-shadow: 0px 8px 16px 0px rgba(0, 0, 0, 0.2);
+  z-index: 1;
+}
+
+.dropdown-content a {
+  color: black;
+  padding: 0.6rem 0.8rem;
+  text-decoration: none;
+  display: block;
+}
+
+.dropdown-content a:hover {
+  background-color: #ddd;
+}
+
+.choose-language:active .dropdown-content {
+  display: block;
+}
+
 .table-container {
   display: flex;
   justify-content: center;

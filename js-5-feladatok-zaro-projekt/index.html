@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    <meta charset="UTF-8" />
+    <meta charset="UTF-16" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link
@@ -13,20 +13,59 @@
     <title>Záró Projekt</title>
   </head>
   <body>
-    <div class="toast-container"></div>
-    <div class="table-container">
-      <table>
-        <thead>
-          <tr>
-            <th style="width: 5%">ID</th>
-            <th style="width: 21%">Name</th>
-            <th style="width: 21%">Email</th>
-            <th style="width: 21%">Address</th>
-            <th style="width: 12%"></th>
-          </tr>
-        </thead>
-        <tbody></tbody>
-      </table>
+    <div class="modal-container">
+      <h2 class="modal-header">Add new user</h2>
+      <div class="modal-input-container">
+        <div class="modal-input-info-container">
+          <div class="name">Name</div>
+          <div class="email">E-mail</div>
+          <div class="address">Address</div>
+        </div>
+        <div class="modal-input-info-fields">
+          <input type="text" />
+          <input type="text" />
+          <input type="text" />
+        </div>
+      </div>
+      <div class="modal-btn-container">
+        <button class="modal-confirm-btn btn modal-btn">Confirm</button>
+        <button class="modal-cancel-btn btn modal-btn">Cancel</button>
+      </div>
+    </div>
+    <div class="non-modal-container">
+      <div class="menu-container">
+        <div class="new-user">
+          <button class="add-user-btn btn">
+            <i class="fa fa-user-plus"></i>
+          </button>
+          <span>Add new user</span>
+        </div>
+        <div class="choose-language">
+          <button class="choose-lg-btn btn">
+            <i class="fa fa-language"></i>
+          </button>
+          <div class="dropdown-content">
+            <a class="hun">Hu 🇭🇺</a>
+            <a class="eng">En 🇺🇲</a>
+          </div>
+          <span>Choose language</span>
+        </div>
+      </div>
+      <div class="toast-container"></div>
+      <div class="table-container">
+        <table>
+          <thead>
+            <tr>
+              <th style="width: 5%">ID</th>
+              <th style="width: 21%">Name</th>
+              <th style="width: 21%">Email</th>
+              <th style="width: 21%">Address</th>
+              <th style="width: 12%"></th>
+            </tr>
+          </thead>
+          <tbody></tbody>
+        </table>
+      </div>
     </div>
     <script src="./toast.js" type="module"></script>
     <script src="./script.js" type="module"></script>

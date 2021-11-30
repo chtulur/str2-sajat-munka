@@ -1,15 +1,6 @@
 # Todo
 
 - USE MODULES!
-- Validate Data on Success/Confirm (REGEXP)
-- Throw Toast on invalid data
-- Valid data to be saved in DOM and JSON
-- Toast for
-- Creat user in a modal. Need a div.create-use-container, just hide it and the whole FORM pops up in a modal.
-- Validate new user data. Same rules apply
-- same Toast warnings apply!!!!!
-- New user data should be added as first child of user-container
-- new added user has the same features as everything else
 
 ## Bonuses
 

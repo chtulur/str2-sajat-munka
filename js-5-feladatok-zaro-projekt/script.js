@@ -9,6 +9,8 @@ const addressTest =
 
 const usersURL = "http://localhost:3000/users";
 const tbody = document.querySelector("tbody");
+const addUserBtn = document.querySelector(".add-user-btn");
+const modal = document.querySelector(".modal-container");
 
 let savedData = [];
 
@@ -27,7 +29,7 @@ const appendRow = ({ id, name, emailAddress, address }) => {
 
 const getList = async () => {
   try {
-    return await axios.get(usersURL).then((response) => response.data);
+    return await axios(usersURL).then((response) => response.data);
   } catch (err) {
     console.error(err);
   }
@@ -43,12 +45,6 @@ const getUsers = () => {
 };
 getUsers();
 
-const editListenerHandlers = (currentElement) => {
-  deactivateListeners();
-  activateEditListeners(currentElement);
-  activateIllegalListeners();
-};
-
 const openEditMode = (ev) => {
   let currentElement = ev.target.parentNode;
   let currentRow = ev.target.parentNode.parentNode;
@@ -56,6 +52,12 @@ const openEditMode = (ev) => {
   addEditBtns(ev);
   addInputFields(currentRow);
   editListenerHandlers(currentElement);
+};
+
+const editListenerHandlers = (currentElement) => {
+  deactivateListeners();
+  activateEditListeners(currentElement);
+  activateIllegalListeners();
 };
 
 const addEditClassToRow = (currentRow) => {
@@ -95,10 +97,10 @@ const addInputFields = (currentRow) => {
     savedData.push(inputFields[i].textContent);
     inputFields[i].innerHTML = `<input class="edit-input" type="text"></input>`;
   }
-  handleSavedData();
+  showEditableDataInInputs();
 };
 
-const handleSavedData = () => {
+const showEditableDataInInputs = () => {
   const inputs = document.querySelectorAll(".edit-input");
   for (let i = 0; i < savedData.length; i++) {
     inputs[i].value = `${savedData[i]}`;
@@ -106,7 +108,7 @@ const handleSavedData = () => {
 };
 
 const resetEdit = (currentRow) => {
-  const inputFields = currentRow.children;
+  let inputFields = currentRow.children;
   for (let i = 1; i < inputFields.length - 1; i++) {
     inputFields[i].innerHTML = `${savedData[i - 1]}`;
   }
@@ -118,41 +120,77 @@ const resetBtns = (currentRow) => {
    <button title="Delete user" class="delete-btn btn"><i class="fa fa-trash"></i></button>`;
 };
 
-const undoEdit = (currentRow) => {
-  resetBtns(currentRow);
-  resetEdit(currentRow, savedData);
+const editListenerHandlersOff = (currentRow) => {
   deactivateIllegalListeners();
   activateListeners();
   removeEditClassFromRow(currentRow);
+};
+
+const undoEdit = (currentRow) => {
+  resetBtns(currentRow);
+  resetEdit(currentRow, savedData);
+  editListenerHandlersOff(currentRow);
 };
 
 const isItTheSame = (currentRow) => {
   let currentFieldArray = [];
   let input = Array.from(currentRow.querySelectorAll(".edit-input"));
   input.forEach((input) => currentFieldArray.push(input.value));
-  return currentFieldArray.sort().join(",") === savedData.sort().join(",")
-    ? true
-    : false;
+  return currentFieldArray.join(",") === savedData.join(",") ? true : false;
 };
 
-const warningHandler = () => {
-  console.log("wrong");
-  callToast("warning", "invalid name format");
-  callToast("warning", "invalid email address");
-  callToast("warning", "invalid address (start with postal code)");
+const warningHandler = (arr) => {
+  if (!nameTest.test(arr[0])) {
+    callToast("warning", "Invalid name format");
+  }
+  if (!emailTest.test(arr[1])) {
+    callToast("warning", "Invalid e-mail address");
+  }
+  if (!addressTest.test(arr[2])) {
+    callToast("warning", "Invalid address (start with postal code)");
+  }
 };
 
-const changeDOMandServer = (inputs) => {
-  console.log(inputs);
+const editDataOnServer = (id, arr, currentRow) => {
+  return axios
+    .patch(`${usersURL}/${id}`, {
+      name: arr[0],
+      emailAddress: arr[1],
+      address: arr[2],
+    })
+    .then((response) => {
+      if (response.status) {
+        updateDOMafterEdit(currentRow, arr);
+        callToast("success", "User has been updated!");
+      }
+    })
+    .catch((err) => {
+      console.error(err.message);
+      callToast("error", "User was not edited due to bad server stuff");
+    });
+};
+
+const updateDOMafterEdit = (currentRow, arr) => {
+  let inputFields = currentRow.children;
+  for (let i = 1; i < inputFields.length - 1; i++) {
+    inputFields[i].innerHTML = arr[i - 1];
+  }
+  savedData = [];
+};
+
+const changeDOMandServer = (currentRow, arr) => {
+  editDataOnServer(currentRow.children[0].textContent, arr, currentRow);
+  resetBtns(currentRow);
+  editListenerHandlersOff(currentRow);
 };
 
 const validateData = (currentRow) => {
-  const [name, email, address] = Array.from(
-    currentRow.querySelectorAll(".edit-input")
-  ).map((el) => el.value);
+  const inputs = Array.from(currentRow.querySelectorAll(".edit-input"));
+  const [name, email, address] = inputs.map((el) => el.value);
+  const arr = [name, email, address];
   nameTest.test(name) && emailTest.test(email) && addressTest.test(address)
-    ? changeDOMandServer(inputs)
-    : warningHandler();
+    ? changeDOMandServer(currentRow, arr)
+    : warningHandler(arr);
 };
 
 const confirmEdit = (currentRow) => {
@@ -177,6 +215,7 @@ const deleteUser = (ev) => {
     .then((response) => {
       if (response.status) {
         deleteUserFromDOM(currentRow);
+        callToast("success", "User has been deleted!");
       }
     })
     .catch((err) => console.error(err.message));
@@ -212,3 +251,78 @@ const activateEditListeners = (currentElement) => {
     undoEdit(currentRow);
   });
 };
+
+const closeModal = () => {
+  modal.style.display = "none";
+};
+
+const clearModalInputs = () => {
+  document
+    .querySelectorAll(".modal-input-info-fields input")
+    .forEach((field) => (field.value = ""));
+};
+
+const handlePostAddUserStuff = () => {
+  clearModalInputs();
+  closeModal();
+  activateListeners();
+  callToast("success", "User has been added!");
+};
+
+const addNewUserToServer = (arr) => {
+  return axios
+    .post(`${usersURL}`, {
+      name: arr[0],
+      emailAddress: arr[1],
+      address: arr[2],
+    })
+    .then((response) => {
+      if (response.status) {
+        let newID = response.data.id;
+        addNewUserToDOM(arr, newID);
+      }
+      handlePostAddUserStuff();
+    })
+    .catch((err) => {
+      console.error(err.message);
+      callToast("error", "User was not added to list due to bad server stuff");
+    });
+};
+
+const addNewUserToDOM = (arr, newID) => {
+  let newRow = document.createElement("tr");
+  tbody.insertBefore(newRow, tbody.firstChild);
+  newRow.innerHTML += `
+  <td title="${newID}">${newID}</td>
+  <td title="${arr[0]}">${arr[0]}</td>
+  <td title="${arr[1]}">${arr[1]}</td>
+  <td title="${arr[2]}">${arr[2]}</td>
+  <td class="btns">
+    <button title="Edit user" class="edit-btn btn"><i class="fa fa-cog"></i></button>
+    <button title="Delete user" class="delete-btn btn"><i class="fa fa-trash"></i></button>
+  </td>
+ `;
+};
+
+const validateNewUser = () => {
+  const modalInputs = Array.from(
+    document.querySelectorAll(".modal-input-info-fields input")
+  );
+  const [name, email, address] = modalInputs.map((el) => el.value);
+  const arr = [name, email, address];
+  nameTest.test(name) && emailTest.test(email) && addressTest.test(address)
+    ? addNewUserToServer(arr)
+    : warningHandler(arr);
+};
+
+const addNewUserModal = () => {
+  modal.style.display = "flex";
+  document
+    .querySelector(".modal-cancel-btn")
+    .addEventListener("click", closeModal);
+  document
+    .querySelector(".modal-confirm-btn")
+    .addEventListener("click", validateNewUser);
+};
+
+addUserBtn.addEventListener("click", addNewUserModal);
