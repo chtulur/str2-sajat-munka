@@ -90,11 +90,6 @@ body {
   align-items: center;
 }
 
-.add-user-btn,
-.chose-lg-btn {
-  padding: 0.2rem;
-}
-
 .fa-user-plus {
   font-size: 1.5rem;
   border-radius: 4px;
@@ -108,9 +103,13 @@ body {
 }
 
 .choose-language {
-  position: relative;
   padding: 0.5rem;
-  display: flex;
+  position: relative;
+  display: inline-block;
+}
+
+.choose-language .choose-lg-btn {
+  display: inline-flex;
 }
 
 .fa-language {
@@ -121,6 +120,7 @@ body {
 }
 
 .choose-language span {
+  display: inline-block;
   padding: 0.5rem;
   font-weight: 700;
 }
@@ -147,7 +147,8 @@ body {
   background-color: #ddd;
 }
 
-.choose-language:active .dropdown-content {
+.choose-language:hover .dropdown-content,
+.choose-language:focus .dropdown-content {
   display: block;
 }
 
