@@ -3,6 +3,20 @@ body {
     Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
   box-sizing: border-box;
   font-size: 20px;
+  margin: 0;
+  padding: 0;
+}
+
+.modal-grey-background {
+  background-color: rgba(0, 0, 0, 0.7);
+  z-index: 3;
+  display: none;
+  justify-content: center;
+  align-items: center;
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  backdrop-filter: blur(4px);
 }
 
 .non-modal-container {
@@ -20,7 +34,7 @@ body {
   transform: translate(-50%, -50%);
   padding: 1.5rem;
   z-index: 2;
-  border: solid 2px black;
+  border-radius: 0.4rem;
   background-color: white;
   display: none;
   flex-direction: column;

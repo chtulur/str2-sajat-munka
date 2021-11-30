@@ -11,6 +11,7 @@ const usersURL = "http://localhost:3000/users";
 const tbody = document.querySelector("tbody");
 const addUserBtn = document.querySelector(".add-user-btn");
 const modal = document.querySelector(".modal-container");
+const modalBg = document.querySelector(".modal-grey-background");
 
 let savedData = [];
 
@@ -29,7 +30,9 @@ const appendRow = ({ id, name, emailAddress, address }) => {
 
 const getList = async () => {
   try {
-    return await axios(usersURL).then((response) => response.data);
+    return await axios
+      .get(usersURL + "?_sort=id&_order=desc")
+      .then((response) => response.data);
   } catch (err) {
     console.error(err);
   }
@@ -254,6 +257,7 @@ const activateEditListeners = (currentElement) => {
 
 const closeModal = () => {
   modal.style.display = "none";
+  modalBg.style.display = "none";
 };
 
 const clearModalInputs = () => {
@@ -317,6 +321,7 @@ const validateNewUser = () => {
 
 const addNewUserModal = () => {
   modal.style.display = "flex";
+  modalBg.style.display = "flex";
   document
     .querySelector(".modal-cancel-btn")
     .addEventListener("click", closeModal);

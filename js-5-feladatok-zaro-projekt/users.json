@@ -61,12 +61,6 @@
       "address": "16635 Petterle Trail"
     },
     {
-      "id": 12,
-      "name": "Scolopax minor",
-      "emailAddress": "ojaycoxb@blogs.com",
-      "address": "38062 Spaight Street"
-    },
-    {
       "id": 13,
       "name": "Cacatua galerita",
       "emailAddress": "celseyc@cafepress.com",
@@ -595,9 +589,9 @@
       "address": "5721 Muir Park"
     },
     {
-      "name": "lknm",
-      "emailAddress": "lkn@gmail.com",
-      "address": "84 a",
+      "name": "My dog",
+      "emailAddress": "csibesz@freemail.hu",
+      "address": "9173 Tápióröcsöge Tihanyi u. 12",
       "id": 101
     }
   ]
