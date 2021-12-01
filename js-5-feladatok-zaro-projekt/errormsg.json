@@ -1,0 +1,54 @@
+{
+  "Toasts": {
+    "StopEditing": {
+      "type": "warning",
+      "messageEN": "Stop editing first you dum-dum 👿",
+      "messageHU": "Először fejezd be a szerkesztést butus 👿"
+    },
+    "InvalidName": {
+      "type": "warning",
+      "messageEN": "Invalid name format",
+      "messageHU": "Helytelen név"
+    },
+    "InvalidEmail": {
+      "type": "warning",
+      "messageEN": "Invalid e-mail address",
+      "messageHU": "Helytelen email"
+    },
+    "InvalidAddress": {
+      "type": "warning",
+      "messageEN": "Invalid address (start with postal code)",
+      "messageHU": "Helytelen cím (kezdd irányítószámmal)"
+    },
+    "UpdateUser": {
+      "type": "success",
+      "messageEN": "User has been updated!",
+      "messageHU": "Felhasználó frissítve"
+    },
+    "UpdateError": {
+      "type": "error",
+      "messageEN": "User was not edited due to bad server stuff",
+      "messageHU": "Felhasználó nem szerkeszthető szerverhiba miatt"
+    },
+    "DeleteError": {
+      "type": "error",
+      "messageEN": "User was not deleted due to bad server stuff",
+      "messageHU": "Felhasználó nem törölhető szerverhiba miatt"
+    },
+    "UserDeleted": {
+      "type": "success",
+      "messageEN": "User has been deleted!",
+      "messageHU": "Felhasználó törölve!"
+    },
+    "AddError": {
+      "type": "error",
+      "messageEN": "User was not added to the list due to bad server stuff",
+      "messageHU": "Felhasználó nem lett a listához adva rendszerhiba miatt"
+    },
+    "UserAdded": {
+      "type": "success",
+      "messageEN": "User has been added!",
+      "messageHU": "Felhasználó hozzáadása sikeres!"
+    }
+  }
+}
