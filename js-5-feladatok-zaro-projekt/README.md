@@ -8,7 +8,6 @@
 - Get info from inputs using dynamic properties
 - Real time validation
 - Change input border color (red, green)
-- Enter should work for Inputs and Form
 - LANGUAGE CHOICE
   - with cute tiny little flag
   - English and Hungarian version

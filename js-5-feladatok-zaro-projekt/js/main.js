@@ -1,22 +1,15 @@
 import callToast from "./toast.js";
-
-const nameTest =
-  /^[a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]{0,50}$/iu;
-const emailTest =
-  /(?:[a-z0-9!#$%&'*+\/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+\/=?^_`{|}~-]+)*|"(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21\x23-\x5b\x5d-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])*")@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\[(?:(?:(2(5[0-5]|[0-4][0-9])|1[0-9][0-9]|[1-9]?[0-9]))\.){3}(?:(2(5[0-5]|[0-4][0-9])|1[0-9][0-9]|[1-9]?[0-9])|[a-z0-9-]*[a-z0-9]:(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21-\x5a\x53-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])+)\])/;
-const addressTest =
-  /^\d+ [0-9a-zA-ZàáâäãåąčćęèéêëėįìíîïłńòóôöőõøùúûüųūÿýżźñçčšžÀÁÂÄÃÅĄĆČĖĘÈÉÊËÌÍÎÏĮŁŃÒÓÔÖÕØÙÚÛÜŲŪŸÝŻŹÑßÇŒÆČŠŽ∂ð ,.'-]{0,50}$/iu;
-
-const usersURL = "http://localhost:3000/users";
-const tbody = document.querySelector("tbody");
-const addUserBtn = document.querySelector(".add-user-btn");
-const modal = document.querySelector(".modal-container");
-const modalBg = document.querySelector(".modal-grey-background");
+import addNewUserModal from "./modal.js";
+import validators from "./validators.js";
+import assets from "./assets.js";
+import { confirmUndoBtnTitleLg, switchToHun, switchToEng } from "./language.js";
 
 let savedData = [];
 
+//GET AND PRINT
+
 const appendRow = ({ id, name, emailAddress, address }) => {
-  tbody.innerHTML += `<tr>
+  assets.tbody.innerHTML += `<tr>
     <td title="${id}">${id}</td>
     <td title="${name}">${name}</td>
     <td title="${emailAddress}">${emailAddress}</td>
@@ -28,10 +21,14 @@ const appendRow = ({ id, name, emailAddress, address }) => {
    </tr>`;
 };
 
+const checkLanguage = () => {
+  localStorage.getItem("Language") === "en" ? switchToEng() : switchToHun();
+};
+
 const getList = async () => {
   try {
     return await axios
-      .get(usersURL + "?_sort=id&_order=desc")
+      .get(assets.usersURL + "?_sort=id&_order=desc")
       .then((response) => response.data);
   } catch (err) {
     console.error(err);
@@ -44,9 +41,12 @@ const getUsers = () => {
       appendRow(user);
     }
     activateListeners();
+    checkLanguage();
   });
 };
 getUsers();
+
+//EDIT MODE
 
 const openEditMode = (ev) => {
   let currentElement = ev.target.parentNode;
@@ -55,6 +55,7 @@ const openEditMode = (ev) => {
   addEditBtns(ev);
   addInputFields(currentRow);
   editListenerHandlers(currentElement);
+  confirmUndoBtnTitleLg();
 };
 
 const editListenerHandlers = (currentElement) => {
@@ -85,7 +86,9 @@ const activateIllegalListeners = () => {
 
 const displayWarning = (ev) => {
   if (ev.target) {
-    callToast("warning", "Stop editing first you dum-dum 👿");
+    assets.html.getAttribute("lang") === "en"
+      ? callToast("warning", "Stop editing first you dum-dum 👿")
+      : callToast("warning", "Először fejezd be a szerkesztést butus 👿");
   }
 };
 
@@ -143,20 +146,26 @@ const isItTheSame = (currentRow) => {
 };
 
 const warningHandler = (arr) => {
-  if (!nameTest.test(arr[0])) {
-    callToast("warning", "Invalid name format");
+  if (!validators.nameTest.test(arr[0])) {
+    assets.html.getAttribute("lang") === "en"
+      ? callToast("warning", "Invalid name format")
+      : callToast("warning", "Helytelen név");
   }
-  if (!emailTest.test(arr[1])) {
-    callToast("warning", "Invalid e-mail address");
+  if (!validators.emailTest.test(arr[1])) {
+    assets.html.getAttribute("lang") === "en"
+      ? callToast("warning", "Invalid e-mail address")
+      : callToast("warning", "Helytelen email");
   }
-  if (!addressTest.test(arr[2])) {
-    callToast("warning", "Invalid address (start with postal code)");
+  if (!validators.addressTest.test(arr[2])) {
+    assets.html.getAttribute("lang") === "en"
+      ? callToast("warning", "Invalid address (start with postal code)")
+      : callToast("warning", "Helytelen cím (kezdd irányítószámmal)");
   }
 };
 
 const editDataOnServer = (id, arr, currentRow) => {
   return axios
-    .patch(`${usersURL}/${id}`, {
+    .patch(`${assets.usersURL}/${id}`, {
       name: arr[0],
       emailAddress: arr[1],
       address: arr[2],
@@ -164,12 +173,16 @@ const editDataOnServer = (id, arr, currentRow) => {
     .then((response) => {
       if (response.status) {
         updateDOMafterEdit(currentRow, arr);
-        callToast("success", "User has been updated!");
+        assets.html.getAttribute("lang") === "en"
+          ? callToast("success", "User has been updated!")
+          : callToast("success", "Felhasználó frissítve");
       }
     })
     .catch((err) => {
       console.error(err.message);
-      callToast("error", "User was not edited due to bad server stuff");
+      assets.html.getAttribute("lang") === "en"
+        ? callToast("error", "User was not edited due to bad server stuff")
+        : callToast("error", "Felhasználó nem szerkeszthető szerverhiba miatt");
     });
 };
 
@@ -191,7 +204,9 @@ const validateData = (currentRow) => {
   const inputs = Array.from(currentRow.querySelectorAll(".edit-input"));
   const [name, email, address] = inputs.map((el) => el.value);
   const arr = [name, email, address];
-  nameTest.test(name) && emailTest.test(email) && addressTest.test(address)
+  validators.nameTest.test(name) &&
+  validators.emailTest.test(email) &&
+  validators.addressTest.test(address)
     ? changeDOMandServer(currentRow, arr)
     : warningHandler(arr);
 };
@@ -205,9 +220,11 @@ const deleteUserFromDOM = (currentRow) => {
 };
 
 const deleteUserFromServer = (id) => {
-  return axios.delete(`${usersURL}/${id}`).catch((err) => {
+  return axios.delete(`${assets.usersURL}/${id}`).catch((err) => {
     console.error(err.message);
-    callToast("error", "User was not deleted due to bad server stuff");
+    assets.html.getAttribute("lang") === "en"
+      ? callToast("error", "User was not deleted due to bad server stuff")
+      : callToast("error", "Felhasználó nem törölhető szerverhiba miatt");
   });
 };
 
@@ -218,11 +235,15 @@ const deleteUser = (ev) => {
     .then((response) => {
       if (response.status) {
         deleteUserFromDOM(currentRow);
-        callToast("success", "User has been deleted!");
+        assets.html.getAttribute("lang") === "en"
+          ? callToast("success", "User has been deleted!")
+          : callToast("success", "Felhasználó törölve!");
       }
     })
     .catch((err) => console.error(err.message));
 };
+
+//EVENT LISTENERS
 
 const deactivateListeners = () => {
   document
@@ -249,85 +270,21 @@ const activateEditListeners = (currentElement) => {
       let currentRow = ev.target.parentNode.parentNode;
       confirmEdit(currentRow);
     });
+  document.querySelectorAll(".edit-input").forEach((input) =>
+    input.addEventListener("keypress", (ev) => {
+      let currentRow = ev.target.parentNode.parentNode;
+      if (ev.keyCode === 13) {
+        confirmEdit(currentRow);
+      }
+    })
+  );
+
   currentElement.querySelector(".undo-btn").addEventListener("click", (ev) => {
     let currentRow = ev.target.parentNode.parentNode;
     undoEdit(currentRow);
   });
 };
 
-const closeModal = () => {
-  modal.style.display = "none";
-  modalBg.style.display = "none";
-};
+assets.addUserBtn.addEventListener("click", addNewUserModal);
 
-const clearModalInputs = () => {
-  document
-    .querySelectorAll(".modal-input-info-fields input")
-    .forEach((field) => (field.value = ""));
-};
-
-const handlePostAddUserStuff = () => {
-  clearModalInputs();
-  closeModal();
-  activateListeners();
-  callToast("success", "User has been added!");
-};
-
-const addNewUserToServer = (arr) => {
-  return axios
-    .post(`${usersURL}`, {
-      name: arr[0],
-      emailAddress: arr[1],
-      address: arr[2],
-    })
-    .then((response) => {
-      if (response.status) {
-        let newID = response.data.id;
-        addNewUserToDOM(arr, newID);
-      }
-      handlePostAddUserStuff();
-    })
-    .catch((err) => {
-      console.error(err.message);
-      callToast("error", "User was not added to list due to bad server stuff");
-    });
-};
-
-const addNewUserToDOM = (arr, newID) => {
-  let newRow = document.createElement("tr");
-  tbody.insertBefore(newRow, tbody.firstChild);
-  newRow.innerHTML += `
-  <td title="${newID}">${newID}</td>
-  <td title="${arr[0]}">${arr[0]}</td>
-  <td title="${arr[1]}">${arr[1]}</td>
-  <td title="${arr[2]}">${arr[2]}</td>
-  <td class="btns">
-    <button title="Edit user" class="edit-btn btn"><i class="fa fa-cog"></i></button>
-    <button title="Delete user" class="delete-btn btn"><i class="fa fa-trash"></i></button>
-  </td>
- `;
-};
-
-const validateNewUser = () => {
-  const modalInputs = Array.from(
-    document.querySelectorAll(".modal-input-info-fields input")
-  );
-  const [name, email, address] = modalInputs.map((el) => el.value);
-  const arr = [name, email, address];
-  nameTest.test(name) && emailTest.test(email) && addressTest.test(address)
-    ? addNewUserToServer(arr)
-    : warningHandler(arr);
-};
-
-const addNewUserModal = () => {
-  modal.style.display = "flex";
-  modalBg.style.display = "flex";
-  document
-    .querySelector(".modal-cancel-btn")
-    .addEventListener("click", closeModal);
-  document
-    .querySelector(".modal-confirm-btn")
-    .addEventListener("click", validateNewUser);
-};
-
-addUserBtn.addEventListener("click", addNewUserModal);
+export { activateListeners, warningHandler };

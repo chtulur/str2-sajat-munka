@@ -10,17 +10,19 @@
     />
     <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
     <link rel="stylesheet" href="./style.css" />
-    <title>Záró Projekt</title>
+    <title data-translation-key="title">Closing JS Project</title>
   </head>
   <body>
     <div class="modal-grey-background">
       <div class="modal-container">
-        <h2 class="modal-header">Add new user</h2>
+        <h2 class="modal-header" data-translation-key="modalHeader">
+          Add new user
+        </h2>
         <div class="modal-input-container">
           <div class="modal-input-info-container">
-            <div class="name">Name</div>
-            <div class="email">E-mail</div>
-            <div class="address">Address</div>
+            <div class="name" data-translation-key="name">Name</div>
+            <div class="email" data-translation-key="email">E-mail</div>
+            <div class="address" data-translation-key="address">Address</div>
           </div>
           <div class="modal-input-info-fields">
             <input type="text" />
@@ -29,8 +31,18 @@
           </div>
         </div>
         <div class="modal-btn-container">
-          <button class="modal-confirm-btn btn modal-btn">Confirm</button>
-          <button class="modal-cancel-btn btn modal-btn">Cancel</button>
+          <button
+            class="modal-confirm-btn btn modal-btn"
+            data-translation-key="modalConfirmBtn"
+          >
+            Confirm
+          </button>
+          <button
+            class="modal-cancel-btn btn modal-btn"
+            data-translation-key="modalCancelBtn"
+          >
+            Cancel
+          </button>
         </div>
       </div>
     </div>
@@ -40,12 +52,14 @@
           <button class="add-user-btn btn">
             <i class="fa fa-user-plus"></i>
           </button>
-          <span>Add new user</span>
+          <span data-translation-key="newUserSpan">Add new user</span>
         </div>
         <div class="choose-language">
           <button class="choose-lg-btn btn">
             <i class="fa fa-language"></i></button
-          ><span>Choose language</span>
+          ><span data-translation-key="chooseLanguageSpan"
+            >Choose language</span
+          >
           <div class="dropdown-content">
             <a class="hun" href="#">Hu 🇭🇺</a>
             <a class="eng" href="#">En 🇺🇲</a>
@@ -57,10 +71,30 @@
         <table>
           <thead>
             <tr>
-              <th style="width: 5%">ID</th>
-              <th style="width: 21%">Name</th>
-              <th style="width: 21%">Email</th>
-              <th style="width: 21%">Address</th>
+              <th class="thID" style="width: 5%" data-translation-key="thID">
+                ID
+              </th>
+              <th
+                class="thName"
+                style="width: 21%"
+                data-translation-key="thName"
+              >
+                Name
+              </th>
+              <th
+                class="thEmail"
+                style="width: 21%"
+                data-translation-key="thEmail"
+              >
+                Email
+              </th>
+              <th
+                class="thAddress"
+                style="width: 21%"
+                data-translation-key="thAddress"
+              >
+                Address
+              </th>
               <th style="width: 12%"></th>
             </tr>
           </thead>
@@ -68,7 +102,9 @@
         </table>
       </div>
     </div>
-    <script src="./toast.js" type="module"></script>
-    <script src="./script.js" type="module"></script>
+    <script src="./js/main.js" type="module"></script>
+    <script src="./js/toast.js" type="module"></script>
+    <script src="./js/modal.js" type="module"></script>
+    <script src="./js/language.js" type="module"></script>
   </body>
 </html>
