@@ -4,6 +4,6 @@
     "**/*.scss",
     "**/*.sass",
     "**/*.ts",
-    "users.json"
+    "data/users.json"
   ]
 }

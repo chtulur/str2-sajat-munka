@@ -1,5 +1,5 @@
 import validators from "./validators.js";
-import callToast from "./toast.js";
+import toastHandler from "./toast.js";
 import { activateListeners, warningHandler } from "./main.js";
 import assets from "./assets.js";
 
@@ -37,23 +37,13 @@ const addNewUserToServer = (arr) => {
       address: arr[2],
     })
     .then((response) => {
-      if (response.status) {
-        let newID = response.data.id;
-        addNewUserToDOM(arr, newID);
-      }
+      let newID = response.data.id;
+      addNewUserToDOM(arr, newID);
       handlePostAddUserStuff();
     })
     .catch((err) => {
       console.error(err.message);
-      assets.html.getAttribute("lang") === "en"
-        ? callToast(
-            "error",
-            "User was not added to list due to bad server stuff"
-          )
-        : callToast(
-            "error",
-            "Felhasználó nem lett a listához adva rendszerhiba miatt"
-          );
+      toastHandler("AddError");
     });
 };
 
@@ -109,9 +99,7 @@ const handlePostAddUserStuff = () => {
   clearModalInputs();
   closeModal();
   activateListeners();
-  assets.html.getAttribute("lang") === "en"
-    ? callToast("success", "User has been added!")
-    : callToast("success", "Felhasználó hozzáadása sikeres!");
+  toastHandler("UserAdded");
 };
 
 export default addNewUserModal;

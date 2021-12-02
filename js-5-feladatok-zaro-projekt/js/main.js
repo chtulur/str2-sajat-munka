@@ -1,4 +1,4 @@
-import callToast from "./toast.js";
+import toastHandler from "./toast.js";
 import addNewUserModal from "./modal.js";
 import validators from "./validators.js";
 import assets from "./assets.js";
@@ -86,9 +86,7 @@ const activateIllegalListeners = () => {
 
 const displayWarning = (ev) => {
   if (ev.target) {
-    assets.html.getAttribute("lang") === "en"
-      ? callToast("warning", "Stop editing first you dum-dum 👿")
-      : callToast("warning", "Először fejezd be a szerkesztést butus 👿");
+    toastHandler("StopEditing");
   }
 };
 
@@ -147,19 +145,13 @@ const isItTheSame = (currentRow) => {
 
 const warningHandler = (arr) => {
   if (!validators.nameTest.test(arr[0])) {
-    assets.html.getAttribute("lang") === "en"
-      ? callToast("warning", "Invalid name format")
-      : callToast("warning", "Helytelen név");
+    toastHandler("InvalidName");
   }
   if (!validators.emailTest.test(arr[1])) {
-    assets.html.getAttribute("lang") === "en"
-      ? callToast("warning", "Invalid e-mail address")
-      : callToast("warning", "Helytelen email");
+    toastHandler("InvalidEmail");
   }
   if (!validators.addressTest.test(arr[2])) {
-    assets.html.getAttribute("lang") === "en"
-      ? callToast("warning", "Invalid address (start with postal code)")
-      : callToast("warning", "Helytelen cím (kezdd irányítószámmal)");
+    toastHandler("InvalidAddress");
   }
 };
 
@@ -170,19 +162,13 @@ const editDataOnServer = (id, arr, currentRow) => {
       emailAddress: arr[1],
       address: arr[2],
     })
-    .then((response) => {
-      if (response.status) {
-        updateDOMafterEdit(currentRow, arr);
-        assets.html.getAttribute("lang") === "en"
-          ? callToast("success", "User has been updated!")
-          : callToast("success", "Felhasználó frissítve");
-      }
+    .then(() => {
+      updateDOMafterEdit(currentRow, arr);
+      toastHandler("UpdateUser");
     })
     .catch((err) => {
       console.error(err.message);
-      assets.html.getAttribute("lang") === "en"
-        ? callToast("error", "User was not edited due to bad server stuff")
-        : callToast("error", "Felhasználó nem szerkeszthető szerverhiba miatt");
+      toastHandler("UpdateError");
     });
 };
 
@@ -222,9 +208,7 @@ const deleteUserFromDOM = (currentRow) => {
 const deleteUserFromServer = (id) => {
   return axios.delete(`${assets.usersURL}/${id}`).catch((err) => {
     console.error(err.message);
-    assets.html.getAttribute("lang") === "en"
-      ? callToast("error", "User was not deleted due to bad server stuff")
-      : callToast("error", "Felhasználó nem törölhető szerverhiba miatt");
+    toastHandler("DeleteError");
   });
 };
 
@@ -232,13 +216,9 @@ const deleteUser = (ev) => {
   let currentRow = ev.target.parentNode.parentNode;
   let id = currentRow.children[0].textContent;
   deleteUserFromServer(id)
-    .then((response) => {
-      if (response.status) {
-        deleteUserFromDOM(currentRow);
-        assets.html.getAttribute("lang") === "en"
-          ? callToast("success", "User has been deleted!")
-          : callToast("success", "Felhasználó törölve!");
-      }
+    .then(() => {
+      deleteUserFromDOM(currentRow);
+      toastHandler("UserDeleted");
     })
     .catch((err) => console.error(err.message));
 };
