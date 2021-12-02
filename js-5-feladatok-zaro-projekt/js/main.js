@@ -188,8 +188,8 @@ const changeDOMandServer = (currentRow, arr) => {
 
 const validateData = (currentRow) => {
   const inputs = Array.from(currentRow.querySelectorAll(".edit-input"));
-  const [name, email, address] = inputs.map((el) => el.value);
-  const arr = [name, email, address];
+  const arr = inputs.map((el) => el.value);
+  const [name, email, address] = arr;
   validators.nameTest.test(name) &&
   validators.emailTest.test(email) &&
   validators.addressTest.test(address)
