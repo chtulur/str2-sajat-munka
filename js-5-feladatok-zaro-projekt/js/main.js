@@ -2,7 +2,12 @@ import toastHandler from "./toast.js";
 import addNewUserModal from "./modal.js";
 import validators from "./validators.js";
 import assets from "./assets.js";
-import { confirmUndoBtnTitleLg, switchToHun, switchToEng } from "./language.js";
+import {
+  confirmUndoBtnTitleLg,
+  switchToHun,
+  switchToEng,
+  buttonTitleLgChanger,
+} from "./language.js";
 import serialize from "./serialize.js";
 
 let savedData = [];
@@ -137,6 +142,7 @@ const undoEdit = (currentRow) => {
   resetBtns(currentRow);
   resetEdit(currentRow, savedData);
   editListenerHandlersOff(currentRow);
+  buttonTitleLgChanger();
 };
 
 const isItTheSame = (currentRow) => {
@@ -168,6 +174,7 @@ const editDataOnServer = (currentRow, id, serializedArr, arr) => {
     .then(() => {
       updateDOMafterEdit(currentRow, arr);
       toastHandler("UpdateUser");
+      buttonTitleLgChanger();
     })
     .catch((err) => {
       console.error(err.message);

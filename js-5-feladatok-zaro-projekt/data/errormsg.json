@@ -49,6 +49,74 @@
       "type": "success",
       "messageEN": "User has been added!",
       "messageHU": "Felhasználó hozzáadása sikeres!"
+    },
+    "title": {
+      "messageEN": "Closing JS Project",
+      "messageHU": "Záró Projekt"
+    },
+    "modalHeader": {
+      "messageEN": "Add new user",
+      "messageHU": "Új felhasználó"
+    },
+    "name": {
+      "messageEN": "Name",
+      "messageHU": "Név"
+    },
+    "email": {
+      "messageEN": "E-mail",
+      "messageHU": "E-mail"
+    },
+    "address": {
+      "messageEN": "Address",
+      "messageHU": "Lakcím"
+    },
+    "modalConfirmBtn": {
+      "messageEN": "Confirm",
+      "messageHU": "Elfogad"
+    },
+    "modalCancelBtn": {
+      "messageEN": "Cancel",
+      "messageHU": "Mégsem"
+    },
+    "newUserSpan": {
+      "messageEN": "Add new user",
+      "messageHU": "Új felhasználó hozzáadása"
+    },
+    "chooseLanguageSpan": {
+      "messageEN": "Choose language",
+      "messageHU": "Nyelv"
+    },
+    "thID": {
+      "messageEN": "ID",
+      "messageHU": "ID"
+    },
+    "thName": {
+      "messageEN": "Name",
+      "messageHU": "Név"
+    },
+    "thEmail": {
+      "messageEN": "Email",
+      "messageHU": "Email"
+    },
+    "thAddress": {
+      "messageEN": "Address",
+      "messageHU": "Lakcím"
+    },
+    "editUserBtn": {
+      "messageEN": "Edit user",
+      "messageHU": "Felhasználó szerkesztése"
+    },
+    "deleteUserBTN": {
+      "messageEN": "Delete user",
+      "messageHU": "Felhasználó törlése"
+    },
+    "undoBTN": {
+      "messageEN": "Undo edit",
+      "messageHU": "Mégsem"
+    },
+    "confirmBTN": {
+      "messageEN": "Confirm",
+      "messageHU": "Elfogadás"
     }
   }
 }
