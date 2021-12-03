@@ -593,6 +593,12 @@
       "emailAddress": "csibesz@freemail.hu",
       "address": "654 Tápióröcsöge Tihanyi u. 12",
       "id": 101
+    },
+    {
+      "name": "John Doe",
+      "emailAddress": "john@doe.com",
+      "address": "70 hn D03",
+      "id": 102
     }
   ]
 }

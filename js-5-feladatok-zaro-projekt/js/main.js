@@ -197,6 +197,27 @@ const validateData = (currentRow) => {
     : warningHandler(arr);
 };
 
+const isClassHandlerValid = (bool, ev) => {
+  if (bool) {
+    ev.target.classList.add("valid");
+    ev.target.classList.remove("invalid");
+  } else {
+    ev.target.classList.add("invalid");
+    ev.target.classList.remove("valid");
+  }
+};
+
+const realTimeValidation = (ev, currentRow) => {
+  const inputs = Array.from(currentRow.querySelectorAll(".edit-input"));
+  if (ev.target === inputs[0]) {
+    isClassHandlerValid(validators.nameTest.test(ev.target.value), ev);
+  } else if (ev.target === inputs[1]) {
+    isClassHandlerValid(validators.emailTest.test(ev.target.value), ev);
+  } else if (ev.target === inputs[2]) {
+    isClassHandlerValid(validators.addressTest.test(ev.target.value), ev);
+  }
+};
+
 const confirmEdit = (currentRow) => {
   isItTheSame(currentRow) ? undoEdit(currentRow) : validateData(currentRow);
 };
@@ -244,18 +265,25 @@ const activateListeners = () => {
 };
 
 const activateEditListeners = (currentElement) => {
+  let inputs = document.querySelectorAll(".edit-input");
   currentElement
     .querySelector(".confirm-btn")
     .addEventListener("click", (ev) => {
       let currentRow = ev.target.parentNode.parentNode;
       confirmEdit(currentRow);
     });
-  document.querySelectorAll(".edit-input").forEach((input) =>
+  inputs.forEach((input) =>
     input.addEventListener("keypress", (ev) => {
       let currentRow = ev.target.parentNode.parentNode;
       if (ev.keyCode === 13) {
         confirmEdit(currentRow);
       }
+    })
+  );
+  inputs.forEach((input) =>
+    input.addEventListener("keyup", (ev) => {
+      let currentRow = ev.target.parentNode.parentNode;
+      realTimeValidation(ev, currentRow);
     })
   );
 

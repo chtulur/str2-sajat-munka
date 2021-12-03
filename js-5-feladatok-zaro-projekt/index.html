@@ -24,11 +24,11 @@
             <div class="email" data-translation-key="email">E-mail</div>
             <div class="address" data-translation-key="address">Address</div>
           </div>
-          <div class="modal-input-info-fields">
-            <input type="text" />
-            <input type="text" />
-            <input type="text" />
-          </div>
+          <form class="modal-input-info-fields" name="form">
+            <input type="text" name="name" />
+            <input type="text" name="emailAddress" />
+            <input type="text" name="address" />
+          </form>
         </div>
         <div class="modal-btn-container">
           <button
@@ -116,5 +116,6 @@
     <script src="./js/toast.js" type="module"></script>
     <script src="./js/modal.js" type="module"></script>
     <script src="./js/language.js" type="module"></script>
+    <script src="./js/serialize.js" type="module"></script>
   </body>
 </html>
