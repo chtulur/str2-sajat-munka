@@ -3,6 +3,7 @@ import addNewUserModal from "./modal.js";
 import validators from "./validators.js";
 import assets from "./assets.js";
 import { confirmUndoBtnTitleLg, switchToHun, switchToEng } from "./language.js";
+import serialize from "./serialize.js";
 
 let savedData = [];
 
@@ -11,9 +12,9 @@ let savedData = [];
 const appendRow = ({ id, name, emailAddress, address }) => {
   assets.tbody.innerHTML += `<tr>
     <td title="${id}">${id}</td>
-    <td title="${name}">${name}</td>
-    <td title="${emailAddress}">${emailAddress}</td>
-    <td title="${address}">${address}</td>
+    <td  title="${name}">${name}</td>
+    <td  title="${emailAddress}">${emailAddress}</td>
+    <td  title="${address}">${address}</td>
     <td class="btns">
       <button title="Edit user" class="edit-btn btn"><i class="fa fa-cog"></i></button>
       <button title="Delete user" class="delete-btn btn"><i class="fa fa-trash"></i></button>
@@ -96,11 +97,13 @@ const addEditBtns = (ev) => {
 };
 
 const addInputFields = (currentRow) => {
-  const inputFields = currentRow.children;
-  for (let i = 1; i < inputFields.length - 1; i++) {
-    savedData.push(inputFields[i].textContent);
-    inputFields[i].innerHTML = `<input class="edit-input" type="text"></input>`;
-  }
+  const inputFields = Array.from(currentRow.children);
+  savedData.push(inputFields[1].textContent);
+  savedData.push(inputFields[2].textContent);
+  savedData.push(inputFields[3].textContent);
+  inputFields[1].innerHTML = `<input name="name" class="edit-input" type="text"></input>`;
+  inputFields[2].innerHTML = `<input name="emailAddress" class="edit-input" type="text"></input>`;
+  inputFields[3].innerHTML = `<input name="address" class="edit-input" type="text"></input>`;
   showEditableDataInInputs();
 };
 
@@ -155,12 +158,12 @@ const warningHandler = (arr) => {
   }
 };
 
-const editDataOnServer = (id, arr, currentRow) => {
+const editDataOnServer = (currentRow, id, serializedArr, arr) => {
   return axios
     .patch(`${assets.usersURL}/${id}`, {
-      name: arr[0],
-      emailAddress: arr[1],
-      address: arr[2],
+      [serializedArr[0][0]]: arr[0],
+      [serializedArr[1][0]]: arr[1],
+      [serializedArr[2][0]]: arr[2],
     })
     .then(() => {
       updateDOMafterEdit(currentRow, arr);
@@ -180,20 +183,23 @@ const updateDOMafterEdit = (currentRow, arr) => {
   savedData = [];
 };
 
-const changeDOMandServer = (currentRow, arr) => {
-  editDataOnServer(currentRow.children[0].textContent, arr, currentRow);
-  resetBtns(currentRow);
-  editListenerHandlersOff(currentRow);
+const changeDOMandServer = (payloadArr) => {
+  editDataOnServer(...payloadArr);
+  resetBtns(...payloadArr);
+  editListenerHandlersOff(...payloadArr);
 };
 
 const validateData = (currentRow) => {
   const inputs = Array.from(currentRow.querySelectorAll(".edit-input"));
-  const arr = inputs.map((el) => el.value);
+  let serializedArr = serialize(inputs);
+  const arr = [serializedArr[0][1], serializedArr[1][1], serializedArr[2][1]];
   const [name, email, address] = arr;
+  const id = currentRow.querySelector(".being-edited > td").textContent;
+  const payloadArr = [currentRow, id, serializedArr, arr];
   validators.nameTest.test(name) &&
   validators.emailTest.test(email) &&
   validators.addressTest.test(address)
-    ? changeDOMandServer(currentRow, arr)
+    ? changeDOMandServer(payloadArr)
     : warningHandler(arr);
 };
 
