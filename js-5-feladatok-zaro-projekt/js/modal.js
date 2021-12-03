@@ -4,25 +4,25 @@ import { activateListeners, warningHandler } from "./main.js";
 import assets from "./assets.js";
 import serialize from "./serialize.js";
 
-const modal = document.querySelector(".modal-container");
-const modalBg = document.querySelector(".modal-grey-background");
-
-const closeModal = () => {
-  document
-    .querySelector(".modal-cancel-btn")
-    .removeEventListener("click", closeModal);
-  document
-    .querySelector(".modal-confirm-btn")
-    .removeEventListener("click", validateNewUser);
-  assets.modalInputs.forEach((input) => (input.value = ""));
+const closeModalRemoveListeners = () => {
+  assets.modalCancel.removeEventListener("click", closeModal);
+  assets.modalConfirm.removeEventListener("click", validateNewUser);
   assets.modalInputs.forEach((input) =>
     input.removeEventListener("keypress", enterListener)
   );
   assets.modalInputs.forEach((input) =>
+    input.removeEventListener("keyup", (ev) => realTimeValidation(ev))
+  );
+};
+
+const closeModal = () => {
+  closeModalRemoveListeners();
+  clearModalInputs();
+  assets.modalInputs.forEach((input) =>
     input.classList.remove("valid", "invalid")
   );
-  modal.style.display = "none";
-  modalBg.style.display = "none";
+  assets.modal.style.display = "none";
+  assets.modalBg.style.display = "none";
 };
 
 const clearModalInputs = () => {
@@ -100,14 +100,10 @@ const enterListener = (ev) => {
 };
 
 const addNewUserModal = () => {
-  modal.style.display = "flex";
-  modalBg.style.display = "flex";
-  document
-    .querySelector(".modal-cancel-btn")
-    .addEventListener("click", closeModal);
-  document
-    .querySelector(".modal-confirm-btn")
-    .addEventListener("click", validateNewUser);
+  assets.modal.style.display = "flex";
+  assets.modalBg.style.display = "flex";
+  assets.modalCancel.addEventListener("click", closeModal);
+  assets.modalConfirm.addEventListener("click", validateNewUser);
 
   assets.modalInputs.forEach((input) =>
     input.addEventListener("keypress", enterListener)

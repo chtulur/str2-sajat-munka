@@ -1,7 +1,5 @@
 import assets from "./assets.js";
 
-const toastContainer = document.querySelector(".toast-container");
-
 const getToasts = async () => {
   try {
     return await axios.get(assets.toastsURL).then((response) => response.data);
@@ -31,7 +29,7 @@ const callToast = (type, message, timeout = 5000) => {
   let toastDiv = document.createElement("div");
   toastDiv.classList.add(`toast-${type}`, "toast");
   toastDiv.textContent = `${message}`;
-  toastContainer.appendChild(toastDiv);
+  document.querySelector(".toast-container").appendChild(toastDiv);
   setTimeout(() => {
     toastDiv.remove();
   }, timeout);

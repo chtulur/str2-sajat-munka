@@ -12,8 +12,6 @@ import serialize from "./serialize.js";
 
 let savedData = [];
 
-//GET AND PRINT
-
 const appendRow = ({ id, name, emailAddress, address }) => {
   assets.tbody.innerHTML += `<tr>
     <td title="${id}">${id}</td>
@@ -119,6 +117,14 @@ const showEditableDataInInputs = () => {
   }
 };
 
+//CLOSE EDIT
+const undoEdit = (currentRow) => {
+  resetBtns(currentRow);
+  resetEdit(currentRow, savedData);
+  editListenerHandlersOff(currentRow);
+  buttonTitleLgChanger();
+};
+
 const resetEdit = (currentRow) => {
   let inputFields = currentRow.children;
   for (let i = 1; i < inputFields.length - 1; i++) {
@@ -136,13 +142,6 @@ const editListenerHandlersOff = (currentRow) => {
   deactivateIllegalListeners();
   activateListeners();
   removeEditClassFromRow(currentRow);
-};
-
-const undoEdit = (currentRow) => {
-  resetBtns(currentRow);
-  resetEdit(currentRow, savedData);
-  editListenerHandlersOff(currentRow);
-  buttonTitleLgChanger();
 };
 
 const isItTheSame = (currentRow) => {
