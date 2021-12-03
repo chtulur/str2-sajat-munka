@@ -37,8 +37,8 @@ const addNewUserToServer = (serializedArr, arr) => {
       [serializedArr[2][0]]: arr[2],
     })
     .then((response) => {
-      let newID = response.data.id;
-      addNewUserToDOM(serializedArr, newID, arr);
+      let newID = [serializedArr, response.data.id, arr];
+      addNewUserToDOM(...newID);
       handlePostAddUserStuff();
     })
     .catch((err) => {
@@ -47,11 +47,11 @@ const addNewUserToServer = (serializedArr, arr) => {
     });
 };
 
-const addNewUserToDOM = (serializedArr, newID, arr) => {
+const addNewUserToDOM = (serializedArr, ID, arr) => {
   let newRow = document.createElement("tr");
   assets.tbody.insertBefore(newRow, assets.tbody.firstChild);
   newRow.innerHTML += `
-  <td title="${newID}">${newID}</td>
+  <td title="${ID}">${ID}</td>
   <td  title="${serializedArr[0][0]}">${arr[0]}</td>
   <td  title="${serializedArr[1][0]}">${arr[1]}</td>
   <td  title="${serializedArr[2][0]}">${arr[2]}</td>

@@ -3,7 +3,7 @@
     "StopEditing": {
       "type": "warning",
       "messageEN": "Stop editing first you dum-dum 👿",
-      "messageHU": "Először fejezd be a szerkesztést butus 👿"
+      "messageHU": "Először be kell fejezned az aktuális szerkesztést!"
     },
     "InvalidName": {
       "type": "warning",
@@ -23,7 +23,7 @@
     "UpdateUser": {
       "type": "success",
       "messageEN": "User has been updated!",
-      "messageHU": "Felhasználó frissítve"
+      "messageHU": "Felhasználó mentve!"
     },
     "UpdateError": {
       "type": "error",
@@ -116,7 +116,7 @@
     },
     "confirmBTN": {
       "messageEN": "Confirm",
-      "messageHU": "Elfogadás"
+      "messageHU": "Mentés"
     }
   }
 }
