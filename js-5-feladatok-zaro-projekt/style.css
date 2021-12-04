@@ -193,7 +193,7 @@ tr:nth-child(even) {
   padding: 0.6rem;
   border-radius: 4px;
   height: 1.8rem;
-  width: 1.8rem;
+  min-width: 1.8rem;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -311,12 +311,4 @@ tr:nth-child(even) {
   position: absolute;
   top: 4.8rem;
   left: 4.4rem;
-}
-
-@media only screen and (max-width: 1000px) {
-  tr {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
 }
