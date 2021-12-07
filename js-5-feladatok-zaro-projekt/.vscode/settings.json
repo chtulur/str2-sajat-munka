@@ -5,5 +5,6 @@
     "**/*.sass",
     "**/*.ts",
     "data/users.json"
-  ]
+  ],
+  "liveServer.settings.port": 5501
 }
