@@ -1,49 +1,59 @@
-const Person = function (nm, id) {
-  this.name = nm;
-  this.id = id;
+let picInFocus = 0;
+
+const container = document.querySelector(".carousel-container");
+const counter = document.querySelector(".counter-number");
+
+const rightArrow = document.querySelector(".fa-angle-right");
+const leftArrow = document.querySelector(".fa-angle-left");
+
+const images = Array.from(document.querySelectorAll(".image"));
+const circles = Array.from(document.querySelectorAll(".fa-circle"));
+
+circles[picInFocus].style.color = "rgb(78, 88, 241)";
+
+const updateCounter = (picInFocus) => {
+  counter.textContent = picInFocus + 1;
 };
 
-Person.prototype.print = () => {
-  return `${this.name} :: ${this.id}`;
+const updateCircles = (nextPic, picInFocus) => {
+  circles[picInFocus].style.color = "";
+  circles[nextPic].style.color = "rgb(78, 88, 241)";
 };
 
-let Pisti = new Person("Pisti", 687);
-console.log(Pisti);
-
-const Employee = function (nm, id, salary) {
-  Person.call(this, nm, id);
-  this.salary = salary;
+const switchPicture = (nextPic, picInFocus) => {
+  images[picInFocus].classList.remove("showImage");
+  images[nextPic].classList.add("showImage");
 };
 
-Object.setPrototypeOf(Employee, Person.prototype);
-Employee.prototype.info = () => {
-  return `${this.name} :: ${this.id} :: ${this.salary}`;
+const scrollRight = () => {
+  let nextPic;
+  picInFocus !== 3 ? (nextPic = picInFocus + 1) : (nextPic = 0);
+  updateCircles(nextPic, picInFocus);
+  switchPicture(nextPic, picInFocus);
+  picInFocus !== 3 ? picInFocus++ : (picInFocus = 0);
+  updateCounter(picInFocus);
 };
 
-let margaret = new Employee("marge", 156, 15619870);
-console.log(margaret);
-
-let Human = class {
-  constructor(nm, id) {
-    this.name = nm;
-    this.id = id;
-  }
-  print() {
-    return `${this.name} :: ${this.id}`;
-  }
-};
-let Jani = new Human("Jani", 849);
-console.log(Jani);
-
-let GoodForNothing = class extends Human {
-  constructor(nm, id, salary) {
-    super(nm, id);
-    this.salary = salary;
-  }
-  show() {
-    return `${this.name} :: ${this.id} :: ${this.salary}`;
-  }
+const scrollLeft = () => {
+  let nextPic;
+  picInFocus !== 0 ? (nextPic = picInFocus - 1) : (nextPic = 3);
+  updateCircles(nextPic, picInFocus);
+  switchPicture(nextPic, picInFocus);
+  picInFocus !== 0 ? picInFocus-- : (picInFocus = 3);
+  updateCounter(picInFocus);
 };
 
-let klau = new GoodForNothing("Klau", 67846, 150000);
-console.log(klau);
+const selectPicture = (ev) => {
+  picInFocus = circles.indexOf(ev.target);
+  circles.forEach((circle) => (circle.style.color = ""));
+  circles[picInFocus].style.color = "rgb(78, 88, 241)";
+  container.querySelector(".showImage").classList.remove("showImage");
+  images[picInFocus].classList.add("showImage");
+  updateCounter(picInFocus);
+};
+
+images[picInFocus].classList.add("showImage");
+setInterval(scrollRight, 3000);
+rightArrow.addEventListener("click", scrollRight);
+leftArrow.addEventListener("click", scrollLeft);
+circles.forEach((circle) => circle.addEventListener("click", selectPicture));

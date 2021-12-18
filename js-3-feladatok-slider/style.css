@@ -1,0 +1,96 @@
+body {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background: radial-gradient(
+    circle,
+    rgba(93, 155, 204, 1) 0%,
+    rgba(16, 20, 83, 1) 100%
+  );
+  text-shadow: 0 0 2px rgba(0, 0, 0, 0.801), 0 0 2px rgba(0, 0, 0, 0.801),
+    0 0 2px rgba(0, 0, 0, 0.801), 0 0 2px rgba(0, 0, 0, 0.801);
+}
+
+.carousel-container {
+  width: 500px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  overflow: hidden;
+  height: 300px;
+  box-shadow: 0 16px 38px 0 rgba(0, 0, 0, 0.67);
+}
+
+.fa {
+  color: white;
+}
+
+.fa-angle-left {
+  position: absolute;
+  left: 2%;
+  font-size: 1.5rem;
+  z-index: 1;
+}
+
+.fa-angle-right {
+  position: absolute;
+  left: 96%;
+  font-size: 1.5rem;
+}
+
+.pic-counter {
+  position: absolute;
+  font-size: 25px;
+  left: 2%;
+  top: 3%;
+  color: white;
+  z-index: 1;
+}
+
+.image {
+  user-select: none;
+  flex-shrink: 0;
+  min-width: 20%;
+  min-height: 30%;
+  object-fit: cover;
+  opacity: 0;
+  transition: opacity 200ms linear;
+  position: absolute;
+  left: 0;
+}
+
+.showImage {
+  opacity: 1;
+}
+
+.carousel-container p {
+  position: absolute;
+  top: 75%;
+  color: white;
+  font-size: 1.2rem;
+}
+
+.fa-circle {
+  position: absolute;
+  top: 91%;
+  color: rgb(207, 207, 207);
+}
+
+.circle-1 {
+  left: calc(30% - 8px);
+}
+.circle-2 {
+  left: calc(43% - 8px);
+}
+.circle-3 {
+  left: calc(56% - 8px);
+}
+.circle-4 {
+  left: calc(70% - 8px);
+}
+
+.pic-container {
+  position: absolute;
+}
