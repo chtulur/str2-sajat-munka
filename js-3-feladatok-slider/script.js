@@ -1,5 +1,6 @@
 let picInFocus = 0;
 let imageCounter = 0;
+let carouselInterval;
 
 const container = document.querySelector(".carousel-container");
 const imageContainer = container.querySelector(".image-container");
@@ -48,6 +49,7 @@ const prepareForPrintingPics = () => {
       printPics(picsumURL);
     }
     collectPictures();
+    startInterval();
   });
 };
 prepareForPrintingPics();
@@ -93,7 +95,14 @@ const selectPicture = (ev) => {
   updateCounter(picInFocus);
 };
 
-// setInterval(scrollRight, 3000);
+const startInterval = () => {
+  carouselInterval = setInterval(scrollRight, 3000);
+};
+
 rightArrow.addEventListener("click", scrollRight);
 leftArrow.addEventListener("click", scrollLeft);
 circles.forEach((circle) => circle.addEventListener("click", selectPicture));
+container.addEventListener("mouseenter", () => {
+  clearInterval(carouselInterval);
+});
+container.addEventListener("mouseleave", startInterval);
