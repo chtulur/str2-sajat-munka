@@ -61,6 +61,12 @@ body {
   left: 0;
 }
 
+.image-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
 .showImage {
   opacity: 1;
 }
