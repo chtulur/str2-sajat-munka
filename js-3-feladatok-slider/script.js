@@ -30,20 +30,21 @@ const collectPictures = () => {
 
 const printPics = (picsumURL) => {
   imageCounter++;
-  let newPic = document.createElement("img");
+  let newPic = new Image();
   newPic.src = picsumURL;
   newPic.alt = `carousel-image${imageCounter}`;
   newPic.classList.add(`img-random${imageCounter}`, "image");
+  newPic.setAttribute("picture", imageCounter);
   if (imageCounter === 1) {
     newPic.classList.add("showImage");
   }
+  newPic.style.minHeight = `${container.offsetHeight}px`;
   imageContainer.appendChild(newPic);
 };
 
 const prepareForPrintingPics = () => {
   getPictures().then((response) => {
     let pics = response.pop();
-    console.log(pics);
     for (let pic in pics) {
       let picsumURL = pics[pic];
       printPics(picsumURL);
@@ -63,9 +64,16 @@ const updateCircles = (nextPic, picInFocus) => {
   circles[nextPic].style.color = "rgb(78, 88, 241)";
 };
 
+const updateCaption = () => {
+  let currentImage = document.querySelector(".showImage");
+  let captionText = document.querySelector(".caption");
+  captionText.textContent = currentImage.getAttribute("picture");
+};
+
 const switchPicture = (nextPic, picInFocus) => {
   images[picInFocus].classList.remove("showImage");
   images[nextPic].classList.add("showImage");
+  updateCaption();
 };
 
 const scrollRight = () => {
@@ -93,6 +101,7 @@ const selectPicture = (ev) => {
   container.querySelector(".showImage").classList.remove("showImage");
   images[picInFocus].classList.add("showImage");
   updateCounter(picInFocus);
+  updateCaption();
 };
 
 const startInterval = () => {

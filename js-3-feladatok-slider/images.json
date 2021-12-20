@@ -2,9 +2,9 @@
   "pictures": [
     {
       "img1": "https://picsum.photos/500/300?random=1",
-      "img2": "https://picsum.photos/500/300?random=2",
-      "img3": "https://picsum.photos/500/300?random=3",
-      "img4": "https://picsum.photos/500/300?random=4"
+      "img2": "https://picsum.photos/500/400?random=2",
+      "img3": "https://picsum.photos/500/500?random=3",
+      "img4": "https://picsum.photos/500/600?random=4"
     }
   ]
 }

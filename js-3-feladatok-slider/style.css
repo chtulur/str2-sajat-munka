@@ -23,6 +23,12 @@ body {
   box-shadow: 0 16px 38px 0 rgba(0, 0, 0, 0.67);
 }
 
+.image-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
 .fa {
   color: white;
 }
@@ -51,19 +57,10 @@ body {
 
 .image {
   user-select: none;
-  flex-shrink: 0;
-  min-width: 20%;
-  min-height: 30%;
   object-fit: cover;
   opacity: 0;
   transition: opacity 200ms linear;
   position: absolute;
-  left: 0;
-}
-
-.image-container {
-  position: absolute;
-  top: 0;
   left: 0;
 }
 
