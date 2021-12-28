@@ -17,4 +17,15 @@ body {
 }
 #myClock {
   color: aqua;
+  width: 40%;
+  display: flex;
+  justify-content: center;
+}
+
+.number-container {
+  flex: 10;
+}
+
+.filler {
+  flex: 1;
 }

@@ -1,0 +1,62 @@
+@import url("https://fonts.googleapis.com/css2?family=Catamaran&family=Lato&family=Mulish&display=swap");
+
+p,
+footer {
+  font-family: "Mulish", "Helvetica", "Arial", sans-serif;
+}
+
+button {
+  font-family: "Lato", "Helvetica", "Arial", sans-serif;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: "Catamaran", "Helvetica", "Arial", sans-serif;
+}
+
+.header {
+  height: 100vh;
+  background: rgb(219, 36, 49);
+  background-image: url("./img/bg-pattern.png"),
+    linear-gradient(90deg, rgba(219, 36, 49, 1) 0%, rgba(123, 67, 151, 1) 100%);
+}
+
+/* someone just fucking kill me already
+
+This doesn't work
+.navbar-brand:hover {
+  color: var(--white) !important;
+}
+
+
+This doesn't work
+nav div .navbar-brand:hover {
+  color: var(--white);
+}
+
+This doesn't work
+body nav div .navbar-brand:hover {
+  color: var(--white);
+}
+
+And this fucking works
+*/
+
+div .navbar-brand:hover {
+  color: var(--white) !important;
+}
+
+/*Welcome to Bootstrap*/
+
+li .nav-link:hover {
+  color: rgb(226, 226, 226) !important;
+}
+
+a.text-secondary:focus,
+a.text-secondary:hover {
+  color: white !important;
+}

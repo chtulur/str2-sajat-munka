@@ -1,59 +1,60 @@
 //Solution II
 
-// const getLocalTimeInfo = new Intl.DateTimeFormat().resolvedOptions();
-// let nowArr;
+const getLocalTimeInfo = new Intl.DateTimeFormat().resolvedOptions();
+let nowArr;
 
-// const now = (date) => {
-//   nowArr = new Intl.DateTimeFormat(getLocalTimeInfo["locale"], {
-//     localeMatcher: "best fit",
-//     hour12: false,
-//     hour: "numeric",
-//     minute: "numeric",
-//     second: "numeric",
-//   })
-//     .format(date)
-//     .split(":");
-// };
-
-// const assignValues = () => {
-//   document.querySelector("#hours").innerHTML = nowArr[0];
-//   document.querySelector("#minutes").innerHTML = nowArr[1];
-//   document.querySelector("#seconds").innerHTML = nowArr[2];
-// };
-
-// setInterval(() => {
-//   const date = new Date();
-//   now(date);
-//   assignValues();
-// }, 1000);
-
-// const Initdate = new Date();
-// now(Initdate);
-// assignValues();
-
-//Solution I
-const theCLockIsTicking = () => {
-  let now = new Date();
-  return (digits = {
-    hours: now.getHours(),
-    minutes: now.getMinutes(),
-    seconds: now.getSeconds(),
-  });
-};
-const padding = (num) => {
-  return num < 10 ? `0${num}` : num;
+const now = (date) => {
+  nowArr = new Intl.DateTimeFormat(getLocalTimeInfo["locale"], {
+    localeMatcher: "best fit",
+    hour12: false,
+    hour: "numeric",
+    minute: "numeric",
+    second: "numeric",
+  })
+    .format(date)
+    .split(":");
 };
 
 const assignValues = () => {
-  document.querySelector("#hours").innerHTML = padding(digits.hours);
-  document.querySelector("#minutes").innerHTML = padding(digits.minutes);
-  document.querySelector("#seconds").innerHTML = padding(digits.seconds);
+  document.querySelector("#hours").innerHTML = nowArr[0];
+  document.querySelector("#minutes").innerHTML = nowArr[1];
+  document.querySelector("#seconds").innerHTML = nowArr[2];
 };
 
 setInterval(() => {
-  theCLockIsTicking();
+  const date = new Date();
+  now(date);
   assignValues();
 }, 1000);
 
-theCLockIsTicking();
+const Initdate = new Date();
+now(Initdate);
 assignValues();
+
+//Solution I
+// const theCLockIsTicking = () => {
+//   let now = new Date();
+//   return (digits = {
+//     hours: now.getHours(),
+//     minutes: now.getMinutes(),
+//     seconds: now.getSeconds(),
+//   });
+// };
+
+// const padding = (num) => {
+//   return num < 10 ? `0${num}` : num;
+// };
+
+// const assignValues = () => {
+//   document.querySelector("#hours").innerHTML = padding(digits.hours);
+//   document.querySelector("#minutes").innerHTML = padding(digits.minutes);
+//   document.querySelector("#seconds").innerHTML = padding(digits.seconds);
+// };
+
+// setInterval(() => {
+//   theCLockIsTicking();
+//   assignValues();
+// }, 1000);
+
+// theCLockIsTicking();
+// assignValues();
