@@ -18,9 +18,9 @@
     <title>Document</title>
   </head>
   <body class="min-vh-100">
-    <nav class="fixed-top navbar navbar-expand-md pl-5">
-      <div class="col-md-6 col-4">
-        <a href="#nav-brand" class="navbar-brand text-warning ml-5"
+    <nav class="fixed-top navbar navbar-expand-lg">
+      <div class="col-lg-5 offset-lg-1 col-4">
+        <a href="#" class="navbar-brand text-warning"
           >Start Bootstrap</a
         >
       </div>
@@ -36,37 +36,37 @@
         <span>Menu</span>
         <i class="fas fa-bars"></i>
       </button>
-      <div id="#menu" class="navbar-collapse collapse justify-content-end pr-5">
-        <ul class="navbar-nav">
+      <div id="menu" class="navbar-collapse collapse justify-content-end col-lg-5">
+        <ul class="navbar-nav text-right pb-2 pt-3">
           <li class="nav-item">
             <a
-              href="#download"
+              href="#buzz"
               class="
                 nav-link
                 text-white-50 text-secondary text-uppercase
-                mx-md-2
+                mx-lg-2
               "
               >Download</a
             >
           </li>
           <li class="nav-item">
             <a
-              href="#features"
+              href="#unlimited"
               class="
                 nav-link
                 text-white-50 text-secondary text-uppercase
-                mx-md-2
+                mx-lg-2
               "
               >Features</a
             >
           </li>
           <li class="nav-item">
             <a
-              href="#contact"
+              href="#so-many-friends"
               class="
                 nav-link
                 text-white-50 text-secondary text-uppercase
-                mx-md-2
+                mx-lg-2
               "
               >Contact</a
             >
@@ -86,27 +86,304 @@
         justify-content-center
       "
     >
-      <div class="row">
-        <div class="col-2"></div>
-        <div class="col-4 p-5">
-          <p>
+      <div class="row pt-1 ">
+        <div
+          class="
+          py-5
+          px-5
+            col-lg-4
+            offset-lg-2
+            col-10
+            offset-1
+            text-lg-left
+            text-center
+            d-flex
+            align-items-center
+            flex-column
+            justify-content-center
+            align-items-lg-start
+          "
+        >
+          <p class="pt-lg-0 pt-5">
             New Age is an app landing page that will help you beautifully
             showcase your new mobile app, or anything else!
           </p>
-          <button
-            class="btn rounded-pill text-white border mt-5 text-uppercase"
-          >
-            start now for free
-          </button>
+              <button
+                class="
+                  btn
+                  rounded-pill
+                  text-white
+                  border
+                  mt-5
+                  text-uppercase
+                  py-2
+                  px-5
+                "
+              >
+                start now for free
+              </button>
         </div>
-        <div class="col-4">
-          <!-- <img src="./img/phone.png" alt="phone" /> -->
+        <div class="col-lg-4 col-12 d-flex justify-content-center phone-container p-0">
+          <div class="position-relative">
+          <img
+            class="phone-img py-5"
+            src="./img/phone.png"
+            alt="phone"
+          />
+          <img
+            class="position-absolute phone-screen-img"
+            src="./img/demo-screen-1.jpg"
+            alt="demo-screen-phone1"
+          />
+          </div>
         </div>
       </div>
     </header>
     <main class="main">
-      <p>asldnslfgndg</p>
+      <section id="buzz"
+        class="
+          buzz
+          container-fluid
+          d-flex
+          text-center
+          justify-content-center
+          align-items-center
+          py-5
+        "
+      >
+        <div>
+          <h1 class="display-4">Discover what all the</h1>
+          <h1 class="display-4">buzz is about!</h1>
+
+          <small class="font-weight-normal buzz-text"
+            >Our app is available on any mobile device! Download now to get
+            started!</small
+          >
+          <div class="row py-3 d-felx flex-column flex-lg-row justify-content-center">
+            <a  href="https://play.google.com/
+            "
+            target=”_blank” class="px-1" >
+              <img
+                src="./img/google-play-badge.svg"
+                alt="googe-play-badge"
+                class="google-apple-badges pb-3 py-lg-0" 
+              /></a>
+              <a class="px-1"
+              href="https://www.apple.com/hu/app-store/"
+              target=”_blank”             
+              >
+             <img src="./img/app-store-badge.svg" alt="app-store-badge"  class="google-apple-badges"> </a>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section id="unlimited" class="py-5 container-fluid unlimited min-vh-100">
+        <div
+          class="
+            row
+            d-flex
+            text-center
+            flex-column
+            justify-content-center
+            align-items-center
+          "
+        >
+        <div class="d-flex flex-lg-row flex-column pt-4">
+          <h1 class="display-4 text-center">
+            Unlimited Features, 
+          </h1>
+          <h1 class="display-4 text-center">&nbspUnlimited Fun</h1>
+        </div>
+          <small class="text-muted"
+            >Check out what you can do with this app theme!</small
+          >
+          <div class="col-1 border-bottom py-2"></div>
+        </div>
+        <div
+          class="
+            unlimited-power
+            row
+            text-center            
+            py-5
+          "
+        >
+        
+          <div class="col-lg-4 offset-lg-2 col-12 phone-container p-0 d-flex justify-content-center">
+            <div class="position-relative">
+              <img
+                class="phone-img"
+                src="./img/phone.png"
+                alt="phone-img"
+              />
+              <img
+                class="phone-screen-img position-absolute"
+                src="./img/demo-screen-1.jpg"
+                alt="demo-screen"
+              />
+            </div>
+          </div>
+          <div class="col-lg-4 col-12 cards-container py-5">
+            <div class="row">
+              <div class="col-lg-6 col-12 cards py-5">
+                <i class="fa fa-mobile icons pb-3"></i>
+                <h2 class="display-5">Device Mockups</h2>
+                <p class="my-0 text-muted">Ready to use HTML/CSS device</p>
+                <p class="text-muted">mockups, no Photoshop required!</p>
+              </div>
+              <div class="col-lg-6 col-12 py-lg-5">
+                <i class="fa fa-camera icons pb-3"></i>
+                <h2 class="display-5">Flexible Use</h2>
+                <p class="my-0 text-muted">Put an image, video, animation, or</p>
+                <p class="text-muted">anything else in the screen!</p>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-lg-6 col-12 unlimited-cards py-5 py-lg-0">
+                <i class="fa fa-gift icons pb-3"></i>
+                <h2 class="display-5">Free to Use</h2>
+                <p class="my-0 text-muted">As always, this theme is free to</p>
+                <p class="text-muted">download and use for naypurpose</p>
+              </div>
+              <div class="col-lg-6 col-12">
+                <i class="fa fa-unlock icons pb-3"></i>
+                <h2 class="display-5">Open Source</h2>
+                <p class="my-0 text-muted">Since this theme is MIT license, you</p>
+                <p class="text-muted">can use it commercially!</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+      <section class="container-fluid stop-waiting d-flex justify-content-center align-items-center">
+          <div class="col-8 py-5">
+            <h1 class="display-4 text-white">Stop waiting.</h1>
+            <h1 class="display-4 text-white">Start building.</h1>
+            <button
+              class="
+                btn
+                rounded-pill
+                text-white
+                border
+                mt-5
+                text-uppercase
+                py-2
+                px-5
+              "
+            >
+              Let's get started!
+            </button>
+          </div>
+      </section>
+      <section
+      id="so-many-friends"
+        class="
+          so-many-friends
+          container-fluid
+          d-flex
+          text-center
+          justify-content-center
+          align-items-center
+          py-5
+        "
+      >
+        <div>
+          <h1 class="display-4">
+            We  <span class="heart-icon">&#x2764</span> new friends
+          </h1>
+        <div class="row d-flex justify-content-center py-3">
+          <div class="icon-container position-relative twitter-container mx-2">
+            <a href="https://twitter.com/" target=”_blank” class="fa fa-twitter socials-icons"></a>
+          </div>
+          <div class="icon-container position-relative facebook-container mx-2">
+            <a target=”_blank” href="https://facebook.com/" class="fa fa-facebook socials-icons"></a>
+          </div>
+          <div class="icon-container position-relative google-container mx-2">
+            <a target=”_blank” href="https://www.google.com/" class="fa fa-google-plus socials-icons"></a>
+          </div>
+        </div>         
+      </div>
+      </section>
     </main>
+    <footer class="container-fluid bg-dark py-3">
+      <div class="row d-flex justify-content-center">
+        <div class="col-5 text-center text-muted">
+          <small>Your Website 2018. All Rights Reserved.</small>
+          <div class="row ">
+            <div class="col-12 text-center text-muted">
+          <small 
+            class="footer-modals px-1" 
+            data-toggle="modal" 
+            data-target="#privacyModal">Privacy</small>
+          <small 
+          class="footer-modals px-1" 
+          data-toggle="modal" 
+          data-target="#termsModal">Terms</small>
+          <small 
+          class="footer-modals px-1" 
+          data-toggle="modal" 
+          data-target="#FAQModal">FAQ</small></div>
+          </div>  
+        </div>
+      </div>
+
+      <!-- modals -->
+      <div class="modal fade" id="privacyModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="privacyModalLabel">Privacy</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Sed ipsam ex ullam fuga deserunt tempora dicta doloribus qui, assumenda aliquid?
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="modal fade" id="termsModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="privacyModalLabel">Terms</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Sed ipsam ex ullam fuga deserunt tempora dicta doloribus qui, assumenda aliquid?
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="modal fade" id="FAQModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="privacyModalLabel">FAQ</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+              Lorem ipsum dolor sit amet consectetur adipisicing elit. Sed ipsam ex ullam fuga deserunt tempora dicta doloribus qui, assumenda aliquid?
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+          </div>
+        </div>
+      </div>      
+    </footer>
 
     <script
       src=" https://code.jquery.com/jquery-3.5.1.slim.min.js"
@@ -123,7 +400,7 @@
       integrity="sha384-w1Q4orYjBQndcko6MimVbzY0tgp4pWB4lZ7lr30WKz0vr/aWKhXdBNmNb5D92v7s"
       crossorigin="anonymous"
     ></script>
-    <script src="./assets/js/main.js"></script>
+    <script src="./main.js"></script>
     <script src="https://code.iconify.design/2/2.1.0/iconify.min.js"></script>
   </body>
 </html>

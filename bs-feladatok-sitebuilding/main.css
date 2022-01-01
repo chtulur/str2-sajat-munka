@@ -1,12 +1,16 @@
-@import url("https://fonts.googleapis.com/css2?family=Catamaran&family=Lato&family=Mulish&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Catamaran:wght@100;200;300;400;500;600;700;800;900&family=Lato:wght@100;300;400;700;900&family=Mulish:wght@200;300;400;500;600;700;800;900&display=swap");
+
+html {
+  scroll-behavior: smooth;
+}
 
 p,
 footer {
-  font-family: "Mulish", "Helvetica", "Arial", sans-serif;
+  font-family: Mulish, Helvetica, Arial, sans-serif;
 }
 
 button {
-  font-family: "Lato", "Helvetica", "Arial", sans-serif;
+  font-family: Lato, Helvetica, Arial, sans-serif;
 }
 
 h1,
@@ -15,48 +19,273 @@ h3,
 h4,
 h5,
 h6 {
-  font-family: "Catamaran", "Helvetica", "Arial", sans-serif;
+  font-family: Catamaran, Helvetica, Arial, sans-serif;
 }
 
 .header {
-  height: 100vh;
+  min-height: 100vh;
   background: rgb(219, 36, 49);
   background-image: url("./img/bg-pattern.png"),
     linear-gradient(90deg, rgba(219, 36, 49, 1) 0%, rgba(123, 67, 151, 1) 100%);
 }
 
-/* someone just fucking kill me already
-
-This doesn't work
-.navbar-brand:hover {
-  color: var(--white) !important;
+.header .row .col-4 {
+  margin-top: -2.2rem;
 }
 
-
-This doesn't work
-nav div .navbar-brand:hover {
-  color: var(--white);
-}
-
-This doesn't work
-body nav div .navbar-brand:hover {
-  color: var(--white);
-}
-
-And this fucking works
-*/
+/* NAV */
 
 div .navbar-brand:hover {
   color: var(--white) !important;
 }
 
-/*Welcome to Bootstrap*/
-
-li .nav-link:hover {
-  color: rgb(226, 226, 226) !important;
+div .navbar-brand.scrolled:hover,
+div .navbar-brand.scrolled:focus {
+  color: #fdcc52 !important;
 }
 
 a.text-secondary:focus,
 a.text-secondary:hover {
   color: white !important;
+}
+
+.btn:hover {
+  color: white;
+  text-decoration: none;
+  background-color: #fdcc52;
+  color: var(--gray-dark) !important;
+  transition: 300ms;
+}
+
+body nav a.text-warning:focus,
+a.text-warning:hover {
+  color: white !important;
+}
+
+body nav a.scrolled:hover {
+  color: #fdcc52 !important;
+}
+
+@media only screen and (max-width: 992px) {
+  .navbar {
+    background-color: white !important;
+  }
+
+  .nav-link {
+    color: black !important;
+  }
+
+  nav a.text-secondary:focus,
+  a.text-secondary:hover,
+  nav .navbar-brand:hover {
+    color: #fdcc52 !important;
+  }
+
+  body nav a.text-warning:focus,
+  a.text-warning:hover {
+    color: #fdcc52 !important;
+  }
+  .navbar-brand {
+    margin-left: 0 !important;
+  }
+
+  .navbar-nav {
+    margin-right: 1rem !important;
+  }
+}
+/* NAV */
+
+/* HEADER */
+header .row p {
+  font-size: xx-large;
+}
+
+header .row .btn {
+  font-size: 0.8rem !important;
+  white-space: nowrap !important;
+}
+
+header .row .btn.focus,
+.btn:focus {
+  outline: 0;
+  box-shadow: 0 0 0 0.2rem rgba(253, 202, 76, 25%) !important;
+}
+
+/* HEADER */
+
+/* BUZZ */
+.main .buzz {
+  background-color: rgb(253, 202, 76) !important;
+  padding: 7rem !important;
+}
+
+.buzz-text {
+  color: black;
+}
+
+.buzz div h1 {
+  font-weight: 200;
+  font-size: 3.5rem !important;
+}
+
+.badge {
+  min-width: 20rem;
+}
+
+.google-apple-badges {
+  width: 10rem;
+  cursor: pointer;
+}
+
+main .buzz .display-4 {
+  font-size: 3rem;
+}
+/* BUZZ */
+
+div .display-4 {
+  font-size: 2.2rem;
+}
+
+section .col-1 {
+  width: 4rem;
+}
+
+/* UNLIMITED */
+
+.unlimited div h1 {
+  font-size: 2.5rem;
+}
+
+.phone-img {
+  width: 20.55rem;
+  height: 47.6rem;
+  left: 0;
+}
+
+.phone-screen-img {
+  left: 20px;
+  top: 7.9rem;
+  width: 18rem;
+  border-radius: 4px;
+}
+
+.unlimited div .phone-img {
+  width: 20.55rem;
+  height: 41.7rem;
+  left: 0;
+}
+
+.unlimited div .phone-screen-img {
+  width: 18rem;
+  border-radius: 4px;
+  top: 4.8rem;
+  left: 20px;
+}
+
+.icons {
+  font-size: 4rem;
+  color: rgb(165, 53, 106);
+}
+
+.mobile-bottom {
+  border-bottom: 1px solid rgb(165, 53, 106);
+}
+
+.unlimited div h2 {
+  font-weight: 200;
+}
+
+.unlimited-power {
+  padding-top: 4rem !important;
+}
+/* UNLIMITED */
+
+/* STOP-WAITING */
+.stop-waiting {
+  background-size: 100%;
+  background-position: bottom 50% left;
+  background-image: url("./img/bg-cta.jpg");
+  box-shadow: inset 0 0 0 100rem rgba(0, 0, 0, 0.4);
+  height: 87vh;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+.stop-waiting button:hover {
+  border-color: #fdcc52 !important;
+  transition: 300ms;
+}
+
+.stop-waiting .col-8 h1 {
+  font-size: 4rem !important;
+}
+/* STOP-WAITING */
+
+/*SO MANY FRIENDS*/
+.so-many-friends h1 {
+  font-size: 3rem;
+}
+
+.heart-icon {
+  color: rgb(255, 30, 0);
+  font-size: 3.2rem;
+}
+
+.so-many-friends {
+  background-color: rgba(253, 202, 76, 0.9) !important;
+  /* padding: 7rem !important; */
+}
+
+.so-many-friends:hover {
+  background-color: rgb(253, 202, 76) !important;
+  /* padding: 7rem !important; */
+}
+
+.socials-icons {
+  top: 1.3rem;
+  font-size: 2rem;
+  color: white;
+  position: absolute;
+}
+
+a:hover {
+  text-decoration: none;
+  color: white;
+}
+
+.icon-container {
+  cursor: pointer;
+  border-radius: 50%;
+  width: 4.5rem;
+  height: 4.5rem;
+}
+
+.twitter-container {
+  background-color: rgb(29, 161, 242);
+}
+
+.facebook-container {
+  background-color: rgb(59, 89, 152);
+}
+
+.google-container {
+  background-color: rgb(221, 75, 57);
+}
+
+.fa-twitter {
+  right: 1.2rem;
+}
+
+.fa-facebook {
+  right: 1.7rem;
+}
+
+.fa-google-plus {
+  right: 1rem;
+}
+/*SO MANY FRIENDS*/
+
+.footer-modals:hover {
+  cursor: pointer;
+  color: #fdcc52;
 }
