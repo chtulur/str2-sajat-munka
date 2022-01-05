@@ -1,9 +1,13 @@
 @import url("https://fonts.googleapis.com/css2?family=Catamaran:wght@100;200;300;400;500;600;700;800;900&family=Lato:wght@100;300;400;700;900&family=Mulish:wght@200;300;400;500;600;700;800;900&display=swap");
+
 @import "./colors";
 @import "./resets";
+@import "./sizing";
+@import "./border-radius";
 
 html {
   scroll-behavior: smooth;
+  min-height: 100vh;
 }
 
 p,
@@ -22,4 +26,546 @@ h4,
 h5,
 h6 {
   font-family: Catamaran, Helvetica, Arial, sans-serif;
+}
+
+p {
+  padding: map-get($spacing, "2");
+  color: map-get($icon-colors, "heart");
+}
+
+/*FUNCTIONS*/
+@function spacing($num) {
+  @return map-get($spacing, $num);
+}
+
+/* FUNCTIONS*/
+
+/*MIXINS*/
+@mixin flexCenter($justify, $direction) {
+  display: flex;
+  align-items: center;
+  justify-content: $justify;
+  flex-direction: $direction;
+}
+
+@mixin mobile {
+  @media (max-width: $mobile) {
+    @content;
+  }
+}
+
+@mixin normal-screen {
+  @media (min-width: $mobile) {
+    @content;
+  }
+}
+
+@mixin button {
+  color: $light-text;
+  border-radius: 500px;
+  background-color: transparent;
+  border: solid 1px $white;
+  white-space: nowrap;
+  text-transform: uppercase;
+  margin-top: spacing("5");
+  padding: spacing("2") spacing("5");
+  &:hover {
+    background-color: $main-color;
+    transition-duration: 0.3s;
+  }
+  &:focus {
+    outline: 5px auto $main-color;
+  }
+}
+
+@mixin display-4 {
+  font-size: 3.6rem;
+  font-weight: 300;
+}
+
+@mixin display-5 {
+  font-size: 2rem;
+  font-weight: 200;
+}
+
+@mixin Unlimited-icons {
+  padding-bottom: spacing("3");
+  color: map-get($icon-colors, UNLIMITED);
+  font-size: 4rem;
+}
+
+@mixin remove-default-btn-style {
+  background: none;
+  color: inherit;
+  border: none;
+  padding: 0;
+  font: inherit;
+  cursor: pointer;
+  outline: inherit;
+  &:focus {
+    outline: 0;
+  }
+}
+
+/*MIXINS*/
+
+/*NAV*/
+.nav {
+  padding: spacing("2") 0;
+  z-index: 999;
+  @include mobile {
+    background-color: $white;
+    padding: spacing("2") 0;
+  }
+  @include flexCenter(space-around, row);
+  position: fixed;
+  width: 100%;
+  .col-4 {
+    padding-right: 0;
+    padding-left: 0;
+  }
+  .nav-menu__btn__container {
+    @include flexCenter(flex-end, row);
+  }
+  #{&}__brand {
+    &.scrolled {
+      color: $dark-text;
+      &:hover {
+        color: $main-color;
+      }
+    }
+    color: $main-color;
+    white-space: nowrap;
+    font-size: 1.4rem;
+    text-decoration: none;
+    @include mobile {
+      color: $dark-text;
+    }
+    &:hover {
+      text-decoration: none;
+      color: $light-text;
+      @include mobile {
+        color: $main-color;
+      }
+    }
+  }
+
+  .nav-menu__btn,
+  input[type="submit"],
+  input[type="reset"] {
+    @include normal-screen {
+      display: none;
+    }
+    @include mobile {
+      display: block;
+    }
+    padding: spacing("2") spacing("3");
+    color: $dark-text;
+    border: 1px solid $gray-border;
+    border-radius: map-get($radius, "normal");
+    background: transparent;
+    cursor: pointer;
+    outline: inherit;
+    z-index: 99;
+    span {
+      font-size: 1.4rem;
+    }
+  }
+  .menu-nav {
+    @include flexCenter(space-around, row);
+    text-align: end;
+    &__normal-screen {
+      background-color: transparent;
+      .menu-nav__filler {
+        width: 0;
+      }
+      .menu-nav__list {
+        @include flexCenter(space-around, row);
+        padding-top: spacing("3");
+      }
+      .menu-nav__item {
+        list-style-type: none;
+        padding-right: spacing("3");
+      }
+      .menu-nav__link {
+        &.scrolled {
+          color: $dark-text;
+          &:hover {
+            color: $main-color;
+          }
+        }
+        color: $gray-text;
+        text-transform: uppercase;
+        &:hover {
+          text-decoration: none;
+          color: $main-color;
+        }
+      }
+    }
+
+    &__mobile {
+      padding-bottom: spacing("2");
+      padding-top: spacing("3");
+      background-color: $white;
+      .menu-nav__filler {
+        min-width: 147.81px;
+      }
+      .menu-nav__list {
+        margin-top: -0.8rem;
+      }
+      .menu-nav__item {
+        list-style-type: none;
+        padding-top: spacing("3");
+      }
+      .menu-nav__link {
+        color: $dark-text;
+        text-transform: uppercase;
+        &:hover {
+          text-decoration: none;
+          color: $main-color;
+        }
+      }
+    }
+  }
+}
+
+/*NAV*/
+
+/*Header*/
+.hdr {
+  min-height: 100vh;
+  background-color: rgb(219, 36, 49);
+  background-image: $pattern;
+  color: $light-text;
+  @include flexCenter(center, row);
+  &__container {
+    @include flexCenter(center, column);
+    padding: spacing("5");
+    align-items: flex-start;
+    @include mobile {
+      align-items: center;
+    }
+  }
+  &__paragraph {
+    color: $light-text;
+    font-size: 2rem;
+    text-align: left;
+    padding-top: 0;
+    @include mobile {
+      text-align: center;
+      padding-top: spacing("5");
+    }
+  }
+  &__btn {
+    @include button;
+  }
+  &__phone--container {
+    @include flexCenter(center, row);
+    padding: spacing("0");
+    &_sub {
+      position: relative;
+      .phone-img {
+        left: 0;
+        top: 7.9rem;
+        height: 47.6rem;
+        width: 20.55rem;
+        border-radius: 4px;
+        padding: spacing("5") 0;
+      }
+      .phone-screen-img {
+        position: absolute;
+        left: 20.5px;
+        top: 7.8rem;
+        width: 18rem;
+        border-radius: 4px;
+      }
+    }
+  }
+}
+
+//BUZZ
+
+.buzz {
+  @include flexCenter(center, row);
+  text-align: center;
+  padding: 10rem 0;
+  background-color: $main-color;
+  &__h1 {
+    @include display-4;
+  }
+  &__small--text {
+    font-weight: 500;
+  }
+  &__cont {
+    padding: spacing("3") 0;
+    @include flexCenter(center, row);
+    @include mobile {
+      flex-direction: column;
+    }
+    &__link {
+      padding: 0 spacing("1");
+      &__img {
+        min-width: 10rem;
+        padding-bottom: spacing("3");
+        @include normal-screen() {
+          padding: 0;
+        }
+      }
+    }
+  }
+}
+
+//UNLIMITED
+
+.unlimited {
+  padding: spacing("5") 0;
+  min-height: 100vh;
+  width: 100%;
+  &__cont {
+    @include flexCenter(center, column);
+    text-align: center;
+    &__title {
+      @include flexCenter(center, column);
+      padding-top: spacing("4");
+      @include normal-screen {
+        flex-direction: row;
+      }
+      &__h1 {
+        @include display-4;
+      }
+    }
+    &__small {
+      color: gray-text;
+    }
+    &__filler {
+      padding: spacing("2") 0;
+      border-bottom: 1px solid #dee2e6 !important;
+    }
+  }
+  &__POWER {
+    text-align: center;
+    padding: spacing("5") 0;
+    &__phone {
+      &__cont {
+        position: relative;
+        &__caseImg {
+          width: 20.55rem;
+          height: 41.7rem;
+          left: 0;
+        }
+        &__screenImg {
+          position: absolute;
+          width: 18rem;
+          border-radius: 4px;
+          top: 4.8rem;
+          left: 20px;
+        }
+      }
+    }
+    &__cont {
+      padding: spacing("5") 0;
+      &__cards {
+        padding: spacing("5") spacing("2");
+        &__icons {
+          @include Unlimited-icons;
+        }
+        &__titles {
+          @include display-5;
+        }
+        &__paragraphs {
+          margin-top: 0;
+          margin-bottom: 0;
+          padding: 0;
+          color: $dark-text;
+        }
+      }
+    }
+  }
+}
+
+//Stop waiting
+
+.stop-waiting {
+  background-size: 100%;
+  background-position: bottom 50% left;
+  background-image: url("../../img/bg-cta.jpg");
+  box-shadow: inset 0 0 0 100rem rgba(0, 0, 0, 0.4);
+  height: 87vh;
+  background-repeat: no-repeat;
+  background-size: cover;
+  width: 100%;
+  @include flexCenter(center, row);
+  &__cont {
+    padding: spacing("5") 0;
+    &__title {
+      color: $light-text;
+      @include display-4;
+    }
+    &__btn {
+      @include button;
+    }
+  }
+}
+
+//friendship is magic
+
+.so-many-friends {
+  @include flexCenter(center, row);
+  text-align: center;
+  padding: spacing("5") 0;
+  background-color: $friends-bg;
+  &:hover {
+    background-color: $main-color;
+  }
+  &__heart-icon {
+    color: map-get($icon-colors, heart);
+    font-size: 3.2rem;
+  }
+  &__h1 {
+    @include display-4;
+  }
+  &__cont {
+    @include flexCenter(center, row);
+    padding: spacing("3") 0;
+    &__icon-cont {
+      position: relative;
+      margin-right: spacing("2");
+      cursor: pointer;
+      border-radius: 50%;
+      width: 4.5rem;
+      height: 4.5rem;
+      &__icon {
+        top: 1.3rem;
+        font-size: 2rem;
+        color: $light-text;
+        position: absolute;
+        &:hover {
+          text-decoration: none;
+          color: $light-text;
+        }
+      }
+    }
+    .twitter__cont {
+      background-color: map-get($icon-colors, twitter);
+      &__twitter {
+        right: 1.2rem;
+      }
+    }
+    .facebook__cont {
+      background-color: map-get($icon-colors, facebook);
+      &__facebook {
+        right: 1.7rem;
+      }
+    }
+    .googleplus__cont {
+      background-color: map-get($icon-colors, google-plus);
+      &__googleplus {
+        right: 1rem;
+      }
+    }
+  }
+}
+
+//footer
+.footer {
+  background-color: $dark-background;
+  padding: spacing("3") 0;
+  &__row {
+    @include flexCenter(center, row);
+    &__title {
+      text-align: center;
+      color: $grayer-text;
+      &__cont {
+        text-align: center;
+        &__modals {
+          padding: 0 spacing("1");
+          &:hover {
+            color: $main-color;
+            cursor: pointer;
+          }
+        }
+      }
+    }
+  }
+  .hidden {
+    display: none;
+  }
+  &__modalCont {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 1050;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.411);
+    outline: 0;
+    overflow: hidden;
+    &__modal {
+      position: relative;
+      max-width: 500px;
+      transition: transform 0.3s ease-out;
+      margin: 1.75rem auto;
+      &__content {
+        position: relative;
+        display: -ms-flexbox;
+        @include flexCenter(center, column);
+        width: 100%;
+        pointer-events: auto;
+        background-color: #fff;
+        background-clip: padding-box;
+        border: 1px solid rgba(0, 0, 0, 0.2);
+        border-radius: 0.3rem;
+        outline: 0;
+        &__header {
+          @include flexCenter(space-between, row);
+          align-items: flex-start;
+          padding: spacing("3");
+          border-bottom: 1px solid #dee2e6;
+          border-top-left-radius: calc(0.3rem - 1px);
+          border-top-right-radius: calc(0.3rem - 1px px);
+          width: 100%;
+          &__title {
+            margin-bottom: 0;
+            line-height: 1.5;
+          }
+          &__btn {
+            @include remove-default-btn-style;
+            padding: spacing("1") spacing("3");
+            margin: -1rem -1rem -1rem auto;
+            font-size: 1.5rem;
+            &:hover {
+              cursor: pointer;
+            }
+          }
+        }
+        &__body {
+          position: relative;
+          flex: 1 1 auto;
+          padding: spacing("3");
+        }
+        &__footer {
+          width: 100%;
+          @include flexCenter(flex-end, row);
+          flex-wrap: wrap;
+          align-items: center;
+          padding: 0.75rem;
+          border-top: 1px solid #dee2e6;
+          border-bottom-right-radius: calc(0.3rem - 1px);
+          border-bottom-left-radius: calc(0.3rem - 1px);
+          &__btn {
+            @include remove-default-btn-style;
+            border: 1px solid $gray-border;
+            padding: spacing("2") spacing("4");
+            border-radius: 4px;
+            font-weight: 400;
+            font-size: 1.2rem;
+            &:hover {
+              background-color: $main-color;
+              transition-duration: 0.3s;
+            }
+          }
+        }
+      }
+    }
+  }
 }

@@ -1,11 +1,291 @@
-<!DOCTYPE html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script
+      src="https://kit.fontawesome.com/2775dc590a.js"
+      crossorigin="anonymous"
+    ></script>
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/css/bootstrap.min.css"
+      integrity="sha384-TX8t27EcRE3e/ihU7zmQxVncDAy5uIKz4rEkgIXeMed4M0jlfIDPvg6uqKI2xXr2"
+      crossorigin="anonymous"
+    />
     <link rel="stylesheet" href="./css/main.css" />
     <title>sass sitebuilding</title>
   </head>
-  <body></body>
+
+  <body>
+    <nav class="nav">
+      <div>
+        <a href="#" class="nav__brand">Start Bootstrap</a>
+      </div>
+      <div class="nav-menu__btn__container">
+        <button
+          class="nav-menu__btn"
+          type="button"
+          aria-controls="menu"
+          aria-expanded="false"
+          aria-label="Toggle navigation"
+        >
+          <span>Menu</span>
+          <i class="fas fa-bars"></i>
+        </button>
+      </div>
+
+      <div class="col-12 col-lg-4 menu-nav">
+        <div class="menu-nav__filler"></div>
+        <ul class="menu-nav__list">
+          <li class="menu-nav__item">
+            <a href="#buzz" class="menu-nav__link">Download</a>
+          </li>
+          <li class="menu-nav__item">
+            <a href="#unlimited" class="menu-nav__link">Features</a>
+          </li>
+          <li class="menu-nav__item">
+            <a href="#so-many-friends" class="menu-nav__link">Contact</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+
+    <header class="hdr">
+      <div class="row pt-1">
+        <div class="hdr__container col-lg-4 offset-lg-2 col-10 offset-1">
+          <p class="hdr__paragraph">
+            New Age is an app landing page that will help you beautifully
+            showcase your new mobile app, or anything else!
+          </p>
+          <button class="hdr__btn">start now for free</button>
+        </div>
+        <div class="hdr__phone--container col-lg-4 col-12 p-0">
+          <div class="hdr__phone--container_sub">
+            <img class="phone-img" src="../../img/phone.png" alt="phone" />
+            <img
+              class="phone-screen-img"
+              src="../../img/demo-screen-1.jpg"
+              alt="demo-screen-phone1"
+            />
+          </div>
+        </div>
+      </div>
+    </header>
+
+      <main>
+        <section id="buzz"
+          class="buzz"
+        >
+          <div>
+            <h1 class="buzz__h1">Discover what all the</h1>
+            <h1 class="buzz__h1">buzz is about!</h1>
+  
+            <small class="buzz__small--text"
+              >Our app is available on any mobile device! Download now to get
+              started!</small
+            >
+            <div class="buzz__cont">
+              <a class="buzz__cont__link" href="https://play.google.com/
+              "
+              target=”_blank” >
+                <img
+                  src="../img/google-play-badge.svg"
+                  alt="googe-play-badge"
+                  class="buzz__cont__link__img" 
+                /></a>
+                <a class="buzz__cont__link"
+                href="https://www.apple.com/hu/app-store/"
+                target=”_blank”             
+                >
+               <img src="../img/app-store-badge.svg" alt="app-store-badge"  class="buzz__cont__link__img"> </a>
+              </div>
+            </div>
+          </div>
+        </section>
+
+      <section id="unlimited" class="unlimited">
+          <div
+            class="unlimited__cont"
+          >
+          <div class="unlimited__cont__title">
+            <h1 class="unlimited__cont__title__h1  ">
+              Unlimited Features, 
+            </h1>
+            <h1 class="unlimited__cont__title__h1">&nbspUnlimited Fun</h1>
+          </div>
+            <small class="unlimited__cont__small text-muted"
+              >Check out what you can do with this app theme!</small
+            >
+            <div class="unlimited__cont__filler col-1"></div>
+          </div>
+          <div
+            class="unlimited__POWER row"
+          >
+          
+            <div class="col-lg-4 offset-lg-2 col-12 unlimited__POWER__phone p-0 d-flex justify-content-center">
+              <div class="unlimited__POWER__phone__cont position-relative">
+                <img
+                  class="unlimited__POWER__phone__cont__caseImg"
+                  src="../img/phone.png"
+                  alt="phone-img"
+                />
+                <img
+                  class="unlimited__POWER__phone__cont__screenImg"
+                  src="../img/demo-screen-1.jpg"
+                  alt="demo-screen"
+                />
+              </div>
+            </div>
+            <div class="col-lg-4 col-12 unlimited__POWER__cont">
+              <div class="row">
+                <div class="col-lg-6 col-12 unlimited__POWER__cont__cards">
+                  <i class="fa fa-mobile unlimited__POWER__cont__cards__icons "></i>
+                  <h2 class="unlimited__POWER__cont__cards__titles">Device Mockups</h2>
+                  <p class="unlimited__POWER__cont__cards__paragraphs">Ready to use HTML/CSS device</p>
+                  <p class="unlimited__POWER__cont__cards__paragraphs">mockups, no Photoshop required!</p>
+                </div>
+                <div class="col-lg-6 col-12 unlimited__POWER__cont__cards">
+                  <i class="fa fa-camera unlimited__POWER__cont__cards__icons"></i>
+                  <h2 class=" unlimited__POWER__cont__cards__titles">Flexible Use</h2>
+                  <p class=" unlimited__POWER__cont__cards__paragraphs">Put an image, video, animation, or</p>
+                  <p class=" unlimited__POWER__cont__cards__paragraphs">anything else in the screen!</p>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-lg-6 col-12 unlimited__POWER__cont__cards ">
+                  <i class="fa fa-gift icons unlimited__POWER__cont__cards__icons"></i>
+                  <h2 class="unlimited__POWER__cont__cards__titles">Free to Use</h2>
+                  <p class="unlimited__POWER__cont__cards__paragraphs">As always, this theme is free to</p>
+                  <p class="unlimited__POWER__cont__cards__paragraphs">download and use for naypurpose</p>
+                </div>
+                <div class="col-lg-6 col-12 unlimited__POWER__cont__cards">
+                  <i class="fa fa-unlock icons unlimited__POWER__cont__cards__icons"></i>
+                  <h2 class="unlimited__POWER__cont__cards__titles">Open Source</h2>
+                  <p class=" unlimited__POWER__cont__cards__paragraphs">Since this theme is MIT license, you</p>
+                  <p class="unlimited__POWER__cont__cards__paragraphs">can use it commercially!</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </section>
+ <section class="stop-waiting">
+            <div class=" stop-waiting__cont col-8">
+              <h1 class="stop-waiting__cont__title">Stop waiting.</h1>
+              <h1 class="stop-waiting__cont__title">Start building.</h1>
+              <button
+                class="stop-waiting__cont__btn"
+              >
+                Let's get started!
+              </button>
+            </div>
+        </section>
+       <section
+        id="so-many-friends"
+          class="
+            so-many-friends
+            container-fluid
+            
+            
+          "
+        >
+          <div>
+            <h1 class="so-many-friends__h1">
+              We  <span class="so-many-friends__heart-icon">&#x2764</span> new friends
+            </h1>
+          <div class="so-many-friends__cont  row">
+            <div class="so-many-friends__cont__icon-cont twitter__cont">
+              <a href="https://twitter.com/" target=”_blank” class="fa fa-twitter twitter__cont__twitter so-many-friends__cont__icon-cont__icon"></a>
+            </div>
+            <div class="so-many-friends__cont__icon-cont  facebook__cont">
+              <a target=”_blank” href="https://facebook.com/" class="fa fa-facebook facebook__cont__facebook so-many-friends__cont__icon-cont__icon"></a>
+            </div>
+            <div class="so-many-friends__cont__icon-cont  googleplus__cont">
+              <a target=”_blank” href="https://www.google.com/" class="fa fa-google-plus googleplus__cont__googleplus so-many-friends__cont__icon-cont__icon"></a>
+            </div>
+          </div>         
+        </div>
+        </section>
+      </main>
+      
+      <footer class="container-fluid footer">
+        <div class="row footer__row">
+          <div class="footer__row__title col-5">
+            <small>Your Website 2018. All Rights Reserved.</small>
+            <div class="row ">
+              <div class="col-12 footer__row__title__cont text-muted">
+            <small 
+              class="open-privacy footer__row__title__cont__modals">Privacy</small>
+              <small 
+            class="open-terms footer__row__title__cont__modals">Terms</small>
+            <small 
+            class="open-faq footer__row__title__cont__modals">FAQ</small></div>
+            </div>  
+          </div>
+        </div>
+
+        <div id="privacy-modal" class="hidden footer__modalCont">
+          <div class="footer__modalCont__modal">
+            <div class="footer__modalCont__modal__content">
+              <div class="footer__modalCont__modal__content__header">
+                <h5 class="footer__modalCont__modal__content__header__title">Privacy</h5>
+                <button class="footer__modalCont__modal__content__header__btn close-modal">x</button>
+              </div>
+              <div class="footer__modalCont__modal__content__body">Lorem ipsum dolor sit amet consectetur adipisicing elit. Sed ipsam ex ullam fuga deserunt tempora dicta doloribus qui, assumenda aliquid?</div>
+              <div class="footer__modalCont__modal__content__footer">
+                <button class="footer__modalCont__modal__content__footer__btn close-modal">Close</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div id="terms-modal" class="hidden footer__modalCont">
+          <div class="footer__modalCont__modal">
+            <div class="footer__modalCont__modal__content">
+              <div class="footer__modalCont__modal__content__header">
+                <h5 class="footer__modalCont__modal__content__header__title">Terms</h5>
+                <button class="footer__modalCont__modal__content__header__btn close-modal">x</button>
+              </div>
+              <div class="footer__modalCont__modal__content__body">Lorem ipsum dolor sit amet consectetur adipisicing elit. Sed ipsam ex ullam fuga deserunt tempora dicta doloribus qui, assumenda aliquid?</div>
+              <div class="footer__modalCont__modal__content__footer">
+                <button class="footer__modalCont__modal__content__footer__btn close-modal">Close</button>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div id="FAQ-modal" class="hidden footer__modalCont">
+          <div class="footer__modalCont__modal">
+            <div class="footer__modalCont__modal__content">
+              <div class="footer__modalCont__modal__content__header">
+                <h5 class="footer__modalCont__modal__content__header__title">FAQ</h5>
+                <button class="footer__modalCont__modal__content__header__btn close-modal">x</button>
+              </div>
+              <div class="footer__modalCont__modal__content__body">Lorem ipsum dolor sit amet consectetur adipisicing elit. Sed ipsam ex ullam fuga deserunt tempora dicta doloribus qui, assumenda aliquid?</div>
+              <div class="footer__modalCont__modal__content__footer">
+                <button class="footer__modalCont__modal__content__footer__btn close-modal">Close</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </footer>
+  
+      <script
+        src=" https://code.jquery.com/jquery-3.5.1.slim.min.js"
+        integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+        crossorigin="anonymous"
+      ></script>
+      <script
+        src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"
+        integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN"
+        crossorigin="anonymous"
+      ></script>
+      <script
+        src="https://cdn.jsdelivr.net/npm/bootstrap@4.5.3/dist/js/bootstrap.min.js"
+        integrity="sha384-w1Q4orYjBQndcko6MimVbzY0tgp4pWB4lZ7lr30WKz0vr/aWKhXdBNmNb5D92v7s"
+        crossorigin="anonymous"
+      ></script>
+
+    <script src="../main.js"></script>
+   
+  </body>
 </html>

@@ -1,11 +1,25 @@
 $main-color: #fdcc52;
+$white: #fff;
+
+$dark-text: #343a40;
+$light-text: #fff;
+$gray-text: darken($light-text, 20%);
+$grayer-text: darken($light-text, 50%);
+
+$dark-background: rgb(52, 58, 64);
+
+$gray-border: #dee2e6;
 
 $header-background-color: rgb(219, 36, 49);
-$header-background-image-gradient: background-image url("./img/bg-pattern.png"),
+$pattern: url("../../img/bg-pattern.png"),
   linear-gradient(90deg, rgba(219, 36, 49, 1) 0%, rgba(123, 67, 151, 1) 100%);
 
-$icon-UNLIMITED-color: rgb(165, 53, 106);
-$icon-google-plus-color: rgb(221, 75, 57);
-$icon-facebook-color: rgb(59, 89, 152);
-$icon-twitter-color: rgb(29, 161, 242);
-$icon-heart-color: rgb(255, 30, 0);
+$icon-colors: (
+  "UNLIMITED": rgb(165, 53, 106),
+  "google-plus": rgb(221, 75, 57),
+  "facebook": rgb(59, 89, 152),
+  "twitter": rgb(29, 161, 242),
+  "heart": rgb(255, 30, 0),
+);
+
+$friends-bg: lighten($main-color, 10%);
